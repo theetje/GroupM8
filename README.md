@@ -32,10 +32,10 @@ Kortom de “fun” van een groep, zonder de administratieve problemen.
 ## Visual sketch
 Include a visual sketch of what the final product will look like for the user; if you envision the application to have multiple screens, sketch these all out separately. Clearly specify the possible user interactions, and include concrete examples of data. Your sketches do not have to be professional-looking, but they have to be complete and neat!
 ### Inlogscherm
-![Inlogscherm](doc/Schermafbeelding 2018-01-08 om 17.32.36.png)
+![Inlogscherm](doc/loggin_view.32.36.png)
 
 ### Algemene Functies
-![Algemene Functies](doc/Schermafbeelding 2018-01-08 om 17.32.36.png)
+![Algemene Functies](doc/main_functions_app.32.44.png)
 
 ### Manu
-![Menu](doc/Schermafbeelding 2018-01-08 om 17.32.36.png)
+![Menu](ddoc/menu_view.32.52.png)
