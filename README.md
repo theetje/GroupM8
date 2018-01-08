@@ -38,4 +38,4 @@ Include a visual sketch of what the final product will look like for the user; i
 ![Algemene Functies](doc/main_functions_app.32.44.png)
 
 ### Manu
-![Menu](ddoc/menu_view.32.52.png)
+![Menu](doc/menu_view.32.52.png)
