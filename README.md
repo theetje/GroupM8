@@ -12,7 +12,9 @@ Denk aan een voetbalteam, studie verenging of gewoon je vriendengroep. Het effec
 
 Het bijhouden van een leden bestand en deze berichten sturen gaat gemakkelijk via de app. Bij het aanmelden wordt er gevraagd of iemand een groep wil maken of bij een bestaande groep wil aanmelden. Het is hierna nog mogelijk van groep te wisselen door naar instellingen te gaan.
 
-Na het inloggen is er een chatbox zichtbaar, een beheerder kan algemene berichten sturen en (indien mogelijk met Apple) kan agenda items aanmaken (het bijhouden van de agenda is afhankelijk van interne functionaliteit). Het is mogelijk een betaal verzoek te sturen en een schulden lijst bij te houden. Indien mogelijk de kan met de API van Bunq een rekening geopend worden, maar is op dit moment niet in Swift dus compatibiliteit moet ik uit gaan zoeken. Anders zal er een functie zijn die met iDeal betalingen regelt.
+Na het inloggen is er een chatbox zichtbaar waar idereen algemene berichten kan sturen. Het tweede onderdeel is dan de agenda. De beheerder kan items toevoegen. Waarscheinlijk gaat dit met behulp van een [package](https://cocoapods.org/pods/JTAppleCalendar).
+
+Het is mogelijk een betaal verzoek te sturen en een schulden lijst bij te houden. Indien mogelijk de kan met de API van Bunq een rekening geopend worden, maar is op dit moment niet met een SDK in Swift dus compatibiliteit moet ik uit gaan zoeken.
 
 Presentielijsten bijhouden is verleden tijd. De beheerder kan een evenement aanmaken en een verzoek versturen voor mensen om zich aan te melden hiervoor.
 En tot slot is er de chatbox functie waar met elkaar gepraat kan worden over, de koetjes en de kalfjes.
@@ -21,12 +23,12 @@ Kortom de “fun” van een groep, zonder de administratieve problemen.
 
 ## functions
 
--	Bijhouden/inzien van presentielijst en agenda (MVP)
--	Het managen/inzien van de financiën
+-	Bijhouden/inzien van presentielijst en [agenda](https://cocoapods.org/pods/JTAppleCalendar) (MVP)
 -	Het hebben van een Messageboard (MVP)
--	Het hebben van een berichten scherm (MVP)
--	Mogelijkheid van groep te switchen (MVP)
--   Notificaties van groepsapp (MVP)
+-	Mogelijkheid van groep te switchen
+-	Het managen/inzien van de financiën
+-	Het hebben van een berichten scherm
+-   Notificaties van groepsapp
 -	Een Algemene agenda
 
 ## Visual sketch
