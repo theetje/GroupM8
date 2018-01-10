@@ -35,12 +35,12 @@ Het is een noSQL database dus er wordt gewerkt zonder schema. Alles is een strin
 
 "Users"
  - "IDUserOne"
-  - name: "Thomas"
-  - bDay: "6 jul"
-  - options: {}
-  - mail: "delange.thomas@gmail.com"
+   - name: "Thomas"
+   - bDay: "6 jul"
+   - options: {}
+   - mail: "delange.thomas@gmail.com"
  - "IDUserTwo"
-  - ...
+   - ...
 
 "Groups"
 - "IDGroupOne"
