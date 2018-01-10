@@ -34,10 +34,10 @@ Kortom de “fun” van een groep, zonder de administratieve problemen.
 ## Visual sketch
 
 ### Inlogscherm
-![Inlogscherm](doc/loggin_view.32.36.png)
+![Inlogscherm](doc/readme/loggin_view.32.36.png)
 
 ### Algemene Functies
-![Algemene Functies](doc/main_functions_app.32.44.png)
+![Algemene Functies](doc/readme/main_functions_app.32.44.png)
 
 ### Menu
-![Menu](doc/menu_view.32.52.png)
+![Menu](doc/readme/menu_view.32.52.png)
