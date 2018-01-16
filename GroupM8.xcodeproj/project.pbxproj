@@ -13,6 +13,7 @@
 		E9032FE32007BBFF006483FA /* backTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9032FE22007BBFF006483FA /* backTableViewController.swift */; };
 		E9032FE52007C479006483FA /* chatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9032FE42007C479006483FA /* chatTableViewController.swift */; };
 		E9032FE72007C64C006483FA /* agendaCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9032FE62007C64C006483FA /* agendaCollectionViewController.swift */; };
+		E929F4F5200E550A00B040F4 /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E929F4F4200E550A00B040F4 /* testViewController.swift */; };
 		E92C2AC2200CEE0C00580F31 /* registerUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C2AC1200CEE0C00580F31 /* registerUserViewController.swift */; };
 		E97916D3200CE3BD00750B10 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E97916D2200CE3BD00750B10 /* GoogleService-Info.plist */; };
 		E9A29E212003843E0048FDA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A29E202003843E0048FDA5 /* AppDelegate.swift */; };
@@ -21,6 +22,8 @@
 		E9A29E2B2003843E0048FDA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9A29E292003843E0048FDA5 /* LaunchScreen.storyboard */; };
 		E9A29E362003843F0048FDA5 /* GroupM8Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A29E352003843F0048FDA5 /* GroupM8Tests.swift */; };
 		E9A29E412003843F0048FDA5 /* GroupM8UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A29E402003843F0048FDA5 /* GroupM8UITests.swift */; };
+		E9BE2F0E200E610000953D88 /* chatboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F0D200E610000953D88 /* chatboxViewController.swift */; };
+		E9BE2F10200E611200953D88 /* agendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F0F200E611200953D88 /* agendaViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,7 @@
 		E9032FE22007BBFF006483FA /* backTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = backTableViewController.swift; sourceTree = "<group>"; };
 		E9032FE42007C479006483FA /* chatTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatTableViewController.swift; sourceTree = "<group>"; };
 		E9032FE62007C64C006483FA /* agendaCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = agendaCollectionViewController.swift; sourceTree = "<group>"; };
+		E929F4F4200E550A00B040F4 /* testViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testViewController.swift; sourceTree = "<group>"; };
 		E92C2AC1200CEE0C00580F31 /* registerUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerUserViewController.swift; sourceTree = "<group>"; };
 		E97916D2200CE3BD00750B10 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E9A29E1D2003843E0048FDA5 /* GroupM8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupM8.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +69,8 @@
 		E9A29E3C2003843F0048FDA5 /* GroupM8UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GroupM8UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9A29E402003843F0048FDA5 /* GroupM8UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupM8UITests.swift; sourceTree = "<group>"; };
 		E9A29E422003843F0048FDA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9BE2F0D200E610000953D88 /* chatboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatboxViewController.swift; sourceTree = "<group>"; };
+		E9BE2F0F200E611200953D88 /* agendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = agendaViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +126,9 @@
 		E9032FD52007A03D006483FA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E9BE2F0D200E610000953D88 /* chatboxViewController.swift */,
+				E9BE2F0F200E611200953D88 /* agendaViewController.swift */,
+				E929F4F4200E550A00B040F4 /* testViewController.swift */,
 				E92C2AC1200CEE0C00580F31 /* registerUserViewController.swift */,
 				E9032FE62007C64C006483FA /* agendaCollectionViewController.swift */,
 				E9032FE42007C479006483FA /* chatTableViewController.swift */,
@@ -429,6 +438,9 @@
 			files = (
 				E9032FE52007C479006483FA /* chatTableViewController.swift in Sources */,
 				E92C2AC2200CEE0C00580F31 /* registerUserViewController.swift in Sources */,
+				E929F4F5200E550A00B040F4 /* testViewController.swift in Sources */,
+				E9BE2F0E200E610000953D88 /* chatboxViewController.swift in Sources */,
+				E9BE2F10200E611200953D88 /* agendaViewController.swift in Sources */,
 				E9032FE32007BBFF006483FA /* backTableViewController.swift in Sources */,
 				E9032FE72007C64C006483FA /* agendaCollectionViewController.swift in Sources */,
 				E9032FD72007A0C8006483FA /* loginViewController.swift in Sources */,
