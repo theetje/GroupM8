@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		E133978AA029911FCD849659 /* Pods_GroupM8.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F0594A37BE8EA77374E7966 /* Pods_GroupM8.framework */; };
-		E9032FCF20079E4C006483FA /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9032FCE20079E4C006483FA /* StyleKit.swift */; };
 		E9032FD72007A0C8006483FA /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9032FD62007A0C8006483FA /* loginViewController.swift */; };
 		E9032FDF2007B3BA006483FA /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9032FDD2007B3B8006483FA /* SWRevealViewController.m */; };
 		E9032FE32007BBFF006483FA /* backTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9032FE22007BBFF006483FA /* backTableViewController.swift */; };
 		E9032FE52007C479006483FA /* chatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9032FE42007C479006483FA /* chatTableViewController.swift */; };
 		E9032FE72007C64C006483FA /* agendaCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9032FE62007C64C006483FA /* agendaCollectionViewController.swift */; };
+		E92C2AC2200CEE0C00580F31 /* registerUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C2AC1200CEE0C00580F31 /* registerUserViewController.swift */; };
+		E97916D3200CE3BD00750B10 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E97916D2200CE3BD00750B10 /* GoogleService-Info.plist */; };
 		E9A29E212003843E0048FDA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A29E202003843E0048FDA5 /* AppDelegate.swift */; };
 		E9A29E262003843E0048FDA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9A29E242003843E0048FDA5 /* Main.storyboard */; };
 		E9A29E282003843E0048FDA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9A29E272003843E0048FDA5 /* Assets.xcassets */; };
@@ -43,7 +44,6 @@
 		25F744F875D46AE12AD8D3BC /* Pods-GroupM8.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupM8.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupM8/Pods-GroupM8.debug.xcconfig"; sourceTree = "<group>"; };
 		7F0594A37BE8EA77374E7966 /* Pods_GroupM8.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupM8.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		835B163D58CA3AF7B93930B8 /* Pods-GroupM8.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupM8.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupM8/Pods-GroupM8.release.xcconfig"; sourceTree = "<group>"; };
-		E9032FCE20079E4C006483FA /* StyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StyleKit.swift; path = sketchMokup/StyleKit.swift; sourceTree = "<group>"; };
 		E9032FD62007A0C8006483FA /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		E9032FDC2007B3B4006483FA /* GroupM8-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GroupM8-Bridging-Header.h"; sourceTree = "<group>"; };
 		E9032FDD2007B3B8006483FA /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -51,6 +51,8 @@
 		E9032FE22007BBFF006483FA /* backTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = backTableViewController.swift; sourceTree = "<group>"; };
 		E9032FE42007C479006483FA /* chatTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatTableViewController.swift; sourceTree = "<group>"; };
 		E9032FE62007C64C006483FA /* agendaCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = agendaCollectionViewController.swift; sourceTree = "<group>"; };
+		E92C2AC1200CEE0C00580F31 /* registerUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerUserViewController.swift; sourceTree = "<group>"; };
+		E97916D2200CE3BD00750B10 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E9A29E1D2003843E0048FDA5 /* GroupM8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupM8.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9A29E202003843E0048FDA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9A29E252003843E0048FDA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		E9032FD52007A03D006483FA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E92C2AC1200CEE0C00580F31 /* registerUserViewController.swift */,
 				E9032FE62007C64C006483FA /* agendaCollectionViewController.swift */,
 				E9032FE42007C479006483FA /* chatTableViewController.swift */,
 				E9032FE22007BBFF006483FA /* backTableViewController.swift */,
@@ -141,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				E9032FDB2007B38C006483FA /* Vendor */,
-				E9032FCE20079E4C006483FA /* StyleKit.swift */,
 				E9A29E1F2003843E0048FDA5 /* GroupM8 */,
 				E9A29E342003843F0048FDA5 /* GroupM8Tests */,
 				E9A29E3F2003843F0048FDA5 /* GroupM8UITests */,
@@ -170,6 +172,7 @@
 				E9A29E242003843E0048FDA5 /* Main.storyboard */,
 				E9A29E272003843E0048FDA5 /* Assets.xcassets */,
 				E9A29E292003843E0048FDA5 /* LaunchScreen.storyboard */,
+				E97916D2200CE3BD00750B10 /* GoogleService-Info.plist */,
 				E9A29E2C2003843F0048FDA5 /* Info.plist */,
 			);
 			path = GroupM8;
@@ -305,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9A29E2B2003843E0048FDA5 /* LaunchScreen.storyboard in Resources */,
+				E97916D3200CE3BD00750B10 /* GoogleService-Info.plist in Resources */,
 				E9A29E282003843E0048FDA5 /* Assets.xcassets in Resources */,
 				E9A29E262003843E0048FDA5 /* Main.storyboard in Resources */,
 			);
@@ -424,10 +428,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9032FE52007C479006483FA /* chatTableViewController.swift in Sources */,
+				E92C2AC2200CEE0C00580F31 /* registerUserViewController.swift in Sources */,
 				E9032FE32007BBFF006483FA /* backTableViewController.swift in Sources */,
 				E9032FE72007C64C006483FA /* agendaCollectionViewController.swift in Sources */,
 				E9032FD72007A0C8006483FA /* loginViewController.swift in Sources */,
-				E9032FCF20079E4C006483FA /* StyleKit.swift in Sources */,
 				E9A29E212003843E0048FDA5 /* AppDelegate.swift in Sources */,
 				E9032FDF2007B3BA006483FA /* SWRevealViewController.m in Sources */,
 			);
