@@ -5,4 +5,5 @@ target 'GroupM8' do
     pod 'Firebase/Auth'
     pod 'Firebase/Database'
     pod 'FirebaseUI'
+    pod 'JTAppleCalendar', '~> 7.1'
 end

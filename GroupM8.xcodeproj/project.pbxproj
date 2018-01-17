@@ -13,6 +13,7 @@
 		E9032FE32007BBFF006483FA /* backTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9032FE22007BBFF006483FA /* backTableViewController.swift */; };
 		E9032FE52007C479006483FA /* chatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9032FE42007C479006483FA /* chatTableViewController.swift */; };
 		E9032FE72007C64C006483FA /* agendaCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9032FE62007C64C006483FA /* agendaCollectionViewController.swift */; };
+		E918F743200F9EE0007ACBAE /* calendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E918F742200F9EE0007ACBAE /* calendarCollectionViewCell.swift */; };
 		E929F4F5200E550A00B040F4 /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E929F4F4200E550A00B040F4 /* testViewController.swift */; };
 		E92C2AC2200CEE0C00580F31 /* registerUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C2AC1200CEE0C00580F31 /* registerUserViewController.swift */; };
 		E97916D3200CE3BD00750B10 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E97916D2200CE3BD00750B10 /* GoogleService-Info.plist */; };
@@ -54,6 +55,7 @@
 		E9032FE22007BBFF006483FA /* backTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = backTableViewController.swift; sourceTree = "<group>"; };
 		E9032FE42007C479006483FA /* chatTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatTableViewController.swift; sourceTree = "<group>"; };
 		E9032FE62007C64C006483FA /* agendaCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = agendaCollectionViewController.swift; sourceTree = "<group>"; };
+		E918F742200F9EE0007ACBAE /* calendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		E929F4F4200E550A00B040F4 /* testViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testViewController.swift; sourceTree = "<group>"; };
 		E92C2AC1200CEE0C00580F31 /* registerUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerUserViewController.swift; sourceTree = "<group>"; };
 		E97916D2200CE3BD00750B10 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 		E9032FCB20079C55006483FA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E918F742200F9EE0007ACBAE /* calendarCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -129,8 +132,8 @@
 				E96E71E5200F68FE003080E0 /* oldControllers */,
 				E9BE2F0D200E610000953D88 /* chatboxViewController.swift */,
 				E9BE2F0F200E611200953D88 /* agendaViewController.swift */,
-				E92C2AC1200CEE0C00580F31 /* registerUserViewController.swift */,
 				E9032FE22007BBFF006483FA /* backTableViewController.swift */,
+				E92C2AC1200CEE0C00580F31 /* registerUserViewController.swift */,
 				E9032FD62007A0C8006483FA /* loginViewController.swift */,
 			);
 			name = Controller;
@@ -405,6 +408,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
@@ -423,6 +427,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
@@ -452,6 +457,7 @@
 				E9032FE32007BBFF006483FA /* backTableViewController.swift in Sources */,
 				E9032FE72007C64C006483FA /* agendaCollectionViewController.swift in Sources */,
 				E9032FD72007A0C8006483FA /* loginViewController.swift in Sources */,
+				E918F743200F9EE0007ACBAE /* calendarCollectionViewCell.swift in Sources */,
 				E9A29E212003843E0048FDA5 /* AppDelegate.swift in Sources */,
 				E9032FDF2007B3BA006483FA /* SWRevealViewController.m in Sources */,
 			);
