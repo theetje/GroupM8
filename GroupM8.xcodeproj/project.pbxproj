@@ -126,12 +126,10 @@
 		E9032FD52007A03D006483FA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E96E71E5200F68FE003080E0 /* oldControllers */,
 				E9BE2F0D200E610000953D88 /* chatboxViewController.swift */,
 				E9BE2F0F200E611200953D88 /* agendaViewController.swift */,
-				E929F4F4200E550A00B040F4 /* testViewController.swift */,
 				E92C2AC1200CEE0C00580F31 /* registerUserViewController.swift */,
-				E9032FE62007C64C006483FA /* agendaCollectionViewController.swift */,
-				E9032FE42007C479006483FA /* chatTableViewController.swift */,
 				E9032FE22007BBFF006483FA /* backTableViewController.swift */,
 				E9032FD62007A0C8006483FA /* loginViewController.swift */,
 			);
@@ -147,6 +145,16 @@
 				E9032FDC2007B3B4006483FA /* GroupM8-Bridging-Header.h */,
 			);
 			name = Vendor;
+			sourceTree = "<group>";
+		};
+		E96E71E5200F68FE003080E0 /* oldControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E929F4F4200E550A00B040F4 /* testViewController.swift */,
+				E9032FE42007C479006483FA /* chatTableViewController.swift */,
+				E9032FE62007C64C006483FA /* agendaCollectionViewController.swift */,
+			);
+			path = oldControllers;
 			sourceTree = "<group>";
 		};
 		E9A29E142003843E0048FDA5 = {

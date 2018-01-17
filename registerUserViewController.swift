@@ -13,12 +13,13 @@ import FirebaseAuth
 
 class registerUserViewController: UIViewController, UITextFieldDelegate {
     
-    // Outlets
+    // Outlets:
     @IBOutlet weak var mailTextField: UITextField!
     @IBOutlet weak var wachtwoordTextField: UITextField!
     @IBOutlet weak var wachtwoordTextFieldOpnieuw: UITextField!
     @IBOutlet weak var groupIDTextField: UITextField!
     
+    // Actions:
     @IBAction func registerUser(_ sender: Any) {
         // Kijk of de wachtwoord velden het zelfde zijn en niet leeg.
         if mailTextField.text != "" && wachtwoordTextField.text != "" {
@@ -51,6 +52,7 @@ class registerUserViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
+    // Overrides:
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -8,33 +8,36 @@
 
 import UIKit
 
-class chatboxViewController: UIViewController {
-
+class chatboxViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    // Outlets:
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var hamburgerButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // De functies voor het hamburger menu.
         hamburgerButton.target = self.revealViewController()
         hamburgerButton.action = #selector(SWRevealViewController.revealToggle(_:))
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-
-        // Do any additional setup after loading the view.
     }
 
+    // Functions:
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath)
+        // Configure the cell...
+    
+        return cell
+    }
+    
+    // Overrides:
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

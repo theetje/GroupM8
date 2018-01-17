@@ -13,9 +13,10 @@ class backTableViewController: UITableViewController {
     var TableArray = [String]()
     
 
+    // Overrides:
     override func viewDidLoad() {
         super.viewDidLoad()
-        TableArray = ["Chatbox", "Agenda", "test"]
+        TableArray = ["Chatbox", "Agenda"]
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -44,7 +45,6 @@ class backTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableArray[indexPath.row], for: indexPath) as UITableViewCell
         
         cell.textLabel?.text = TableArray[indexPath.row]
-        
         
         return cell
     }

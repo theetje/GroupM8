@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 
 class loginViewController: UIViewController {
+    
     // Outlets
     @IBOutlet weak var mailTextField: UITextField!
     @IBOutlet weak var wachtwoordTextField: UITextField!
@@ -34,6 +35,7 @@ class loginViewController: UIViewController {
         }
     }
     
+    // Overrides:
     override func viewDidLoad() {
         super.viewDidLoad()
 
