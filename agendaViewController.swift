@@ -9,7 +9,7 @@
 import UIKit
 import JTAppleCalendar
 
-class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate {
     
     // Outlets:
     @IBOutlet weak var hamburgerButton: UIBarButtonItem!
@@ -17,6 +17,7 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     @IBOutlet weak var calenderView: JTAppleCalendarView!
     @IBOutlet weak var yearLable: UILabel!
     @IBOutlet weak var monthLable: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
     // Date formatter object.
     let formatter: DateFormatter = {
@@ -36,6 +37,9 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     // Overrides:
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Deze instelling maakt dat de calender per maand stopt.
+        calenderView.scrollingMode = .stopAtEachSection
         
         // Haal data van de server naar een object.
         DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
@@ -68,6 +72,10 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         hamburgerButton.target = self.revealViewController()
         hamburgerButton.action = #selector(SWRevealViewController.revealToggle(_:))
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
+        // Laat de tableView weten dat dit zijn bron van info is.
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     // Functions:
@@ -90,6 +98,41 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         handleCellTextColor(cell: myCustomCell, cellState: cellState)
         handleTodaysDate(cell: myCustomCell, cellState: cellState)
         handleCellEvents(cell: myCustomCell, cellState: cellState)
+    }
+    
+    var eventData = [String:String]()
+    
+    // Configureer event tableView.
+    func configureTableView(cell: JTAppleCell?, cellState: CellState) {
+        guard let myCustomCell = cell as? calendarCollectionViewCell else { return }
+        
+        let selectedEventData = handleSelectedDateEvents(cell: myCustomCell, cellState: cellState)
+        eventData = selectedEventData
+        
+        tableView.reloadData()
+    }
+    
+    // Functie die info laat zien van de geselecteerde datum.
+    func handleSelectedDateEvents(cell: calendarCollectionViewCell, cellState: CellState) -> Dictionary < String, String> {
+        // Zorg voor zekerheid mbo de formatter.
+        formatter.dateFormat = "yyyy MM dd"
+        var eventsOnSelectedDate = eventsFromTheServer
+        
+        if cellState.isSelected {
+            for dates in eventsOnSelectedDate {
+                if formatter.string(from: cellState.date) != dates.key {
+                    eventsOnSelectedDate.removeValue(forKey: dates.key)
+                }
+            }
+        } else {
+            for dates in eventsOnSelectedDate {
+                if formatter.string(from: todaysDate) == dates.key {
+                    eventsOnSelectedDate.removeValue(forKey: dates.key)
+                }
+            }
+        }
+        
+        return eventsOnSelectedDate
     }
     
     // Laat de evenementen zien die opgehaald worden van de server.
@@ -121,7 +164,6 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
                 cell.dateLable.textColor = UIColor.gray
             }
         }
-        
     }
     
     // Selecteerd en deselecteerd de cellen.
@@ -143,7 +185,7 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         monthLable.text = formatter.string(from: date)
     }
     
-    // Functions (nodig voor class):
+    // Functions (nodig voor class CollectionView):
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // collectionView hoord bij protocol
         return 1
@@ -151,6 +193,27 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // collectrionViewCell hoord bij protocol
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath as IndexPath)
+        return cell
+    }
+    
+    // Functions (nodig voor class TableView):
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        print(eventData)
+        return eventData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath)
+        
+        let keys = Array(eventData.keys)[indexPath.row]
+        cell.textLabel?.text = keys
+        
         return cell
     }
 }
@@ -172,6 +235,9 @@ extension agendaViewController: JTAppleCalendarViewDelegate {
         // Laat de geselecteerde cell zien
         // Functies die bij selectie gebruikt worden.
         configureCell(cell: cell, cellState: cellState)
+        
+        // Haal Evenementen op van de geselecteerde dag.
+        configureTableView(cell: cell, cellState: cellState)
         cell?.bounce()
     }
     

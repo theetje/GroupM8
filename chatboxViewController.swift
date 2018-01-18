@@ -10,12 +10,17 @@ import UIKit
 
 class chatboxViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    // Test variabelen
+    let testArray = ["first" : "some description", "second": "nog meer info", "third": "laatste info"]
+    
     // Outlets:
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var hamburgerButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
         
         // De functies voor het hamburger menu.
         hamburgerButton.target = self.revealViewController()
@@ -25,13 +30,20 @@ class chatboxViewController: UIViewController, UITableViewDataSource, UITableVie
 
     // Functions:
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return testArray.count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath)
-        // Configure the cell...
+        let key = Array(testArray.keys)[indexPath.row]
+        let values = Array(testArray.values)[indexPath.row]
     
+        cell.textLabel?.text = values
+//        cell.detailTextLabel?.text = values
         return cell
     }
     
