@@ -27,12 +27,22 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         return dateFormatter
     }()
     
+    // Welke dag is het vandaag.
+    let todaysDate = Date()
+    
     // Overrides:
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // setup van de cell waar 1 dag zich in bevind.
-        setupCalenderView()
+        setupCalandarView()
+        
+        // Scroll naar de huidige datum, zonder animatie
+        calenderView.scrollToDate(Date(), animateScroll: false )
+        
+        calenderView.visibleDates { dateSegment in
+            self.setupViewsOfCalendar(from: dateSegment)
+        }
         
         // De functies voor het hamburger menu.
         hamburgerButton.target = self.revealViewController()
@@ -41,7 +51,7 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     }
     
     // Functions:
-    func setupCalenderView() {
+    func setupCalandarView() {
         // setup van de cell waar 1 dag zich in bevind.
         calenderView.minimumLineSpacing = 0
         calenderView.minimumInteritemSpacing = 0
@@ -52,30 +62,48 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         }
     }
     
-    // Functie die de kleur veranderd bij selectie de selectie.
-    func handleCellTextColor(view: JTAppleCell?, cellState: CellState) {
-        guard let validCell = view as? calendarCollectionViewCell else { return }
+    // Configureer de stel met de functies die vervolgens gegeven zijn.
+    func configureCell(cell: JTAppleCell?, cellState: CellState) {
+        guard let myCustomCell = cell as? calendarCollectionViewCell else { return }
         
+        handleCellSelected(cell: myCustomCell, cellstate: cellState)
+        handleCellTextColor(cell: myCustomCell, cellState: cellState)
+        handleTodaysDate(cell: myCustomCell, cellState: cellState)
+    }
+    
+    // Functie die de huidige datum laat zien.
+    func handleTodaysDate(cell: calendarCollectionViewCell, cellState: CellState) {
+        // Zorg voor zekerheid mbo de formatter.
+        formatter.dateFormat = "yyyy MM dd"
+        
+        // Kijk naar de huidige data en pas de text aan.
+        let todaysDateString = formatter.string(from: todaysDate)
+        let monthDateString = formatter.string(from: cellState.date)
+        if todaysDateString == monthDateString {
+            cell.dateLable.textColor = UIColor.blue
+        }
+    }
+    
+    // Functie die de kleur veranderd bij selectie de selectie.
+    func handleCellTextColor(cell: calendarCollectionViewCell, cellState: CellState) {
         if cellState.isSelected {
-            validCell.dateLable.textColor = UIColor.darkGray
+            cell.dateLable.textColor = UIColor.darkGray
         } else {
             if cellState.dateBelongsTo == .thisMonth {
-                validCell.dateLable.textColor = UIColor.black
+                cell.dateLable.textColor = UIColor.black
             } else {
-                validCell.dateLable.textColor = UIColor.gray
+                cell.dateLable.textColor = UIColor.gray
             }
         }
         
     }
     
     // Selecteerd en deselecteerd de cellen.
-    func handleCellSelected(view: JTAppleCell?, cellstate: CellState) {
-        guard let validCell = view as? calendarCollectionViewCell else { return }
-        
-        if validCell.isSelected {
-            validCell.selectedView.isHidden = false
+    func handleCellSelected(cell: calendarCollectionViewCell, cellstate: CellState) {
+        if cell.isSelected {
+            cell.selectedView.isHidden = false
         } else {
-            validCell.selectedView.isHidden = true
+            cell.selectedView.isHidden = true
         }
     }
 
@@ -87,7 +115,6 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         yearLable.text = formatter.string(from: date)
         formatter.dateFormat = "MMMM"
         monthLable.text = formatter.string(from: date)
-    
     }
     
     // Functions (nodig voor class):
@@ -95,16 +122,10 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         // collectionView hoord bij protocol
         return 1
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // collectrionViewCell hoord bij protocol
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath as IndexPath)
         return cell
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 
@@ -115,22 +136,19 @@ extension agendaViewController: JTAppleCalendarViewDelegate {
         cell.dateLable.text = cellState.text
         
         // Functies die nodig zijn sbij creatie van de cell.
-        handleCellSelected(view: cell, cellstate: cellState)
-        handleCellTextColor(view: cell, cellState: cellState)
+        configureCell(cell: cell, cellState: cellState)
         return cell
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         // Laat de geselecteerde cell zien
         // Functies die bij selectie gebruikt worden.
-        handleCellSelected(view: cell, cellstate: cellState)
-        handleCellTextColor(view: cell, cellState: cellState)
+        configureCell(cell: cell, cellState: cellState)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         // functies die bij deselectie gebruikt worden.
-        handleCellSelected(view: cell, cellstate: cellState)
-        handleCellTextColor(view: cell, cellState: cellState)
+        configureCell(cell: cell, cellState: cellState)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
@@ -144,7 +162,7 @@ extension agendaViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
 
         // Stel de start en eind datum van de calendar in.
-        let startDate = formatter.date(from: "2018 01 01")
+        let startDate = formatter.date(from: "2010 01 01")
         let endDate = formatter.date(from: "2030 12 31")
         let parameters = ConfigurationParameters(startDate: startDate!, endDate: endDate!)
         

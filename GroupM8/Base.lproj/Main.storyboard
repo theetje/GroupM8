@@ -709,7 +709,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <outlet property="dateLable" destination="Vb6-n7-ef3" id="nXu-Zc-tWL"/>
+                                                    <outlet property="dateLable" destination="Vb6-n7-ef3" id="h9x-BB-SZK"/>
                                                     <outlet property="selectedView" destination="R2z-Rn-cFN" id="kmj-Cb-iRz"/>
                                                 </connections>
                                             </collectionViewCell>
