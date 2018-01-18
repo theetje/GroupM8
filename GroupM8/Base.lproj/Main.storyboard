@@ -745,6 +745,7 @@
                         <outlet property="calenderView" destination="MbL-hT-J5J" id="0S2-X2-C7m"/>
                         <outlet property="collectionView" destination="MbL-hT-J5J" id="k6D-gO-cYQ"/>
                         <outlet property="hamburgerButton" destination="3xP-OZ-S84" id="Bxb-94-jcj"/>
+                        <outlet property="monthLable" destination="YTv-HH-Meh" id="QbC-XS-rkV"/>
                         <outlet property="yearLable" destination="uxk-f2-UK8" id="cvD-YN-Fj8"/>
                     </connections>
                 </viewController>
