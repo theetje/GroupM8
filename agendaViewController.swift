@@ -196,22 +196,21 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         return cell
     }
     
-    // Functions (nodig voor class TableView):
+    // Functions (nodig voor cl§ass TableView):
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        print(eventData)
+        // Kijk hoeveel evenementen er zijn op een datum.
         return eventData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath)
         
-        let keys = Array(eventData.keys)[indexPath.row]
+        let keys = Array(eventData.values)[indexPath.row]
         cell.textLabel?.text = keys
         
         return cell

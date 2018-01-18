@@ -43,7 +43,7 @@ class chatboxViewController: UIViewController, UITableViewDataSource, UITableVie
         let values = Array(testArray.values)[indexPath.row]
     
         cell.textLabel?.text = values
-//        cell.detailTextLabel?.text = values
+        cell.detailTextLabel?.text = key
         return cell
     }
     

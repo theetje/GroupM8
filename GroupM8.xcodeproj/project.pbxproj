@@ -146,6 +146,14 @@
 			name = Vendor;
 			sourceTree = "<group>";
 		};
+		E930FA5520111186001ECF89 /* delegate */ = {
+			isa = PBXGroup;
+			children = (
+				E9A29E202003843E0048FDA5 /* AppDelegate.swift */,
+			);
+			path = delegate;
+			sourceTree = "<group>";
+		};
 		E9A29E142003843E0048FDA5 = {
 			isa = PBXGroup;
 			children = (
@@ -174,12 +182,12 @@
 			children = (
 				E9032FD52007A03D006483FA /* Controller */,
 				E9032FCB20079C55006483FA /* View */,
-				E9A29E202003843E0048FDA5 /* AppDelegate.swift */,
+				E930FA5520111186001ECF89 /* delegate */,
+				E97916D2200CE3BD00750B10 /* GoogleService-Info.plist */,
+				E9A29E2C2003843F0048FDA5 /* Info.plist */,
 				E9A29E242003843E0048FDA5 /* Main.storyboard */,
 				E9A29E272003843E0048FDA5 /* Assets.xcassets */,
 				E9A29E292003843E0048FDA5 /* LaunchScreen.storyboard */,
-				E97916D2200CE3BD00750B10 /* GoogleService-Info.plist */,
-				E9A29E2C2003843F0048FDA5 /* Info.plist */,
 			);
 			path = GroupM8;
 			sourceTree = "<group>";
