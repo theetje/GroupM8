@@ -11,11 +11,9 @@
 		E9032FD72007A0C8006483FA /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9032FD62007A0C8006483FA /* loginViewController.swift */; };
 		E9032FDF2007B3BA006483FA /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9032FDD2007B3B8006483FA /* SWRevealViewController.m */; };
 		E9032FE32007BBFF006483FA /* backTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9032FE22007BBFF006483FA /* backTableViewController.swift */; };
-		E9032FE52007C479006483FA /* chatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9032FE42007C479006483FA /* chatTableViewController.swift */; };
-		E9032FE72007C64C006483FA /* agendaCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9032FE62007C64C006483FA /* agendaCollectionViewController.swift */; };
 		E918F743200F9EE0007ACBAE /* calendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E918F742200F9EE0007ACBAE /* calendarCollectionViewCell.swift */; };
-		E929F4F5200E550A00B040F4 /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E929F4F4200E550A00B040F4 /* testViewController.swift */; };
 		E92C2AC2200CEE0C00580F31 /* registerUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C2AC1200CEE0C00580F31 /* registerUserViewController.swift */; };
+		E93C792F2010C99400A718EB /* CalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93C792E2010C99400A718EB /* CalendarHeader.swift */; };
 		E97916D3200CE3BD00750B10 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E97916D2200CE3BD00750B10 /* GoogleService-Info.plist */; };
 		E9A29E212003843E0048FDA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A29E202003843E0048FDA5 /* AppDelegate.swift */; };
 		E9A29E262003843E0048FDA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9A29E242003843E0048FDA5 /* Main.storyboard */; };
@@ -53,11 +51,9 @@
 		E9032FDD2007B3B8006483FA /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		E9032FDE2007B3BA006483FA /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		E9032FE22007BBFF006483FA /* backTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = backTableViewController.swift; sourceTree = "<group>"; };
-		E9032FE42007C479006483FA /* chatTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatTableViewController.swift; sourceTree = "<group>"; };
-		E9032FE62007C64C006483FA /* agendaCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = agendaCollectionViewController.swift; sourceTree = "<group>"; };
 		E918F742200F9EE0007ACBAE /* calendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calendarCollectionViewCell.swift; sourceTree = "<group>"; };
-		E929F4F4200E550A00B040F4 /* testViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testViewController.swift; sourceTree = "<group>"; };
 		E92C2AC1200CEE0C00580F31 /* registerUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerUserViewController.swift; sourceTree = "<group>"; };
+		E93C792E2010C99400A718EB /* CalendarHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeader.swift; sourceTree = "<group>"; };
 		E97916D2200CE3BD00750B10 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E9A29E1D2003843E0048FDA5 /* GroupM8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupM8.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9A29E202003843E0048FDA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +117,7 @@
 		E9032FCB20079C55006483FA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E93C792E2010C99400A718EB /* CalendarHeader.swift */,
 				E918F742200F9EE0007ACBAE /* calendarCollectionViewCell.swift */,
 			);
 			path = View;
@@ -129,7 +126,6 @@
 		E9032FD52007A03D006483FA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E96E71E5200F68FE003080E0 /* oldControllers */,
 				E9BE2F0D200E610000953D88 /* chatboxViewController.swift */,
 				E9BE2F0F200E611200953D88 /* agendaViewController.swift */,
 				E9032FE22007BBFF006483FA /* backTableViewController.swift */,
@@ -148,16 +144,6 @@
 				E9032FDC2007B3B4006483FA /* GroupM8-Bridging-Header.h */,
 			);
 			name = Vendor;
-			sourceTree = "<group>";
-		};
-		E96E71E5200F68FE003080E0 /* oldControllers */ = {
-			isa = PBXGroup;
-			children = (
-				E929F4F4200E550A00B040F4 /* testViewController.swift */,
-				E9032FE42007C479006483FA /* chatTableViewController.swift */,
-				E9032FE62007C64C006483FA /* agendaCollectionViewController.swift */,
-			);
-			path = oldControllers;
 			sourceTree = "<group>";
 		};
 		E9A29E142003843E0048FDA5 = {
@@ -449,13 +435,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9032FE52007C479006483FA /* chatTableViewController.swift in Sources */,
 				E92C2AC2200CEE0C00580F31 /* registerUserViewController.swift in Sources */,
-				E929F4F5200E550A00B040F4 /* testViewController.swift in Sources */,
 				E9BE2F0E200E610000953D88 /* chatboxViewController.swift in Sources */,
+				E93C792F2010C99400A718EB /* CalendarHeader.swift in Sources */,
 				E9BE2F10200E611200953D88 /* agendaViewController.swift in Sources */,
 				E9032FE32007BBFF006483FA /* backTableViewController.swift in Sources */,
-				E9032FE72007C64C006483FA /* agendaCollectionViewController.swift in Sources */,
 				E9032FD72007A0C8006483FA /* loginViewController.swift in Sources */,
 				E918F743200F9EE0007ACBAE /* calendarCollectionViewCell.swift in Sources */,
 				E9A29E212003843E0048FDA5 /* AppDelegate.swift in Sources */,

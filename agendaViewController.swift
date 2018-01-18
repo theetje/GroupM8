@@ -30,9 +30,29 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     // Welke dag is het vandaag.
     let todaysDate = Date()
     
+    // Gebruik een dict om evenementen in opteslaan van de server.
+    var eventsFromTheServer: [String: String] = [:]
+    
     // Overrides:
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Haal data van de server naar een object.
+        DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
+            // roep aan als object:
+            let serverObject = self.getServerEvents()
+            
+            // Loop door de waarden heen en formateer
+            for (date, event) in serverObject {
+                let stringDate = self.formatter.string(from: date)
+                self.eventsFromTheServer[stringDate] = event
+            }
+            
+            // Omdate je geen langzame app wil async data ophalen.
+            DispatchQueue.main.async {
+                self.calenderView.reloadData()
+            }
+        }
         
         // setup van de cell waar 1 dag zich in bevind.
         setupCalandarView()
@@ -69,6 +89,12 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         handleCellSelected(cell: myCustomCell, cellstate: cellState)
         handleCellTextColor(cell: myCustomCell, cellState: cellState)
         handleTodaysDate(cell: myCustomCell, cellState: cellState)
+        handleCellEvents(cell: myCustomCell, cellState: cellState)
+    }
+    
+    // Laat de evenementen zien die opgehaald worden van de server.
+    func handleCellEvents(cell: calendarCollectionViewCell, cellState: CellState) {
+        cell.dotSelecter.isHidden = !eventsFromTheServer.contains { $0.key == formatter.string(from: cellState.date) }
     }
     
     // Functie die de huidige datum laat zien.
@@ -129,7 +155,9 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     }
 }
 
+// Extensions van de ViewController:
 extension agendaViewController: JTAppleCalendarViewDelegate {
+    // Extentie voor de delegate
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         // Maak de cell de datum in staat.
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "calendarCell", for: indexPath) as! calendarCollectionViewCell
@@ -144,6 +172,7 @@ extension agendaViewController: JTAppleCalendarViewDelegate {
         // Laat de geselecteerde cell zien
         // Functies die bij selectie gebruikt worden.
         configureCell(cell: cell, cellState: cellState)
+        cell?.bounce()
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
@@ -155,10 +184,19 @@ extension agendaViewController: JTAppleCalendarViewDelegate {
         // functie gaat over segment waar overheen gescroled wordt.
         setupViewsOfCalendar(from: visibleDates)
     }
+    
+    func calendar(_ calendar: JTAppleCalendarView, headerViewForDateRange range: (start: Date, end: Date), at indexPath: IndexPath) -> JTAppleCollectionReusableView {
+        let header = calendar.dequeueReusableJTAppleSupplementaryView(withReuseIdentifier: "header", for: indexPath) as! CalendarHeader
+        return header
+    }
+    
+    func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize? {
+        return MonthSize(defaultSize: 50)
+    }
 }
 
-// Extensions:
 extension agendaViewController: JTAppleCalendarViewDataSource {
+    // Extentie voor de DataSource
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
 
         // Stel de start en eind datum van de calendar in.
@@ -175,3 +213,34 @@ extension agendaViewController: JTAppleCalendarViewDataSource {
     }
 }
 
+// Hieronder haalt de data uit de database
+extension agendaViewController {
+    func getServerEvents() -> [Date: String] {
+        formatter.dateFormat = "yyyy MM dd"
+        
+        return [
+            formatter.date(from: "2018 01 03")!: "Verjaardag",
+            formatter.date(from: "2018 01 10")!: "Iets anders te doen",
+            formatter.date(from: "2018 02 12")!: "Nog een evenement",
+            formatter.date(from: "2018 03 03")!: "Zwembad feeste",
+            formatter.date(from: "2018 03 20")!: "Geen feestje",
+            formatter.date(from: "2018 02 01")!: "DDAY!!",
+        ]
+    }
+}
+
+extension UIView {
+    func bounce() {
+        // Animatie van de cell
+        self.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0, usingSpringWithDamping: 0.3,
+            initialSpringVelocity: 0.1,
+            options: UIViewAnimationOptions.beginFromCurrentState,
+            animations: {
+                self.transform = CGAffineTransform(scaleX: 1, y: 1)
+        }
+        )
+    }
+}

@@ -12,4 +12,5 @@ import JTAppleCalendar
 class calendarCollectionViewCell: JTAppleCell {
     @IBOutlet weak var dateLable: UILabel!
     @IBOutlet weak var selectedView: UIView!
+    @IBOutlet weak var dotSelecter: UIView!
 }
