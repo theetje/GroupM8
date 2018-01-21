@@ -14,7 +14,9 @@
 		E918F743200F9EE0007ACBAE /* calendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E918F742200F9EE0007ACBAE /* calendarCollectionViewCell.swift */; };
 		E92C2AC2200CEE0C00580F31 /* registerUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C2AC1200CEE0C00580F31 /* registerUserViewController.swift */; };
 		E93C792F2010C99400A718EB /* CalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93C792E2010C99400A718EB /* CalendarHeader.swift */; };
+		E944ACC820122AB600F502D3 /* newEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E944ACC720122AB600F502D3 /* newEventViewController.swift */; };
 		E97916D3200CE3BD00750B10 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E97916D2200CE3BD00750B10 /* GoogleService-Info.plist */; };
+		E98C185D2013987D00DD476F /* findUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98C185C2013987D00DD476F /* findUser.swift */; };
 		E9A29E212003843E0048FDA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A29E202003843E0048FDA5 /* AppDelegate.swift */; };
 		E9A29E262003843E0048FDA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9A29E242003843E0048FDA5 /* Main.storyboard */; };
 		E9A29E282003843E0048FDA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9A29E272003843E0048FDA5 /* Assets.xcassets */; };
@@ -54,7 +56,9 @@
 		E918F742200F9EE0007ACBAE /* calendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		E92C2AC1200CEE0C00580F31 /* registerUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerUserViewController.swift; sourceTree = "<group>"; };
 		E93C792E2010C99400A718EB /* CalendarHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeader.swift; sourceTree = "<group>"; };
+		E944ACC720122AB600F502D3 /* newEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newEventViewController.swift; sourceTree = "<group>"; };
 		E97916D2200CE3BD00750B10 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E98C185C2013987D00DD476F /* findUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = findUser.swift; sourceTree = "<group>"; };
 		E9A29E1D2003843E0048FDA5 /* GroupM8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupM8.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9A29E202003843E0048FDA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9A29E252003843E0048FDA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 		E9032FD52007A03D006483FA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E944ACC720122AB600F502D3 /* newEventViewController.swift */,
 				E9BE2F0D200E610000953D88 /* chatboxViewController.swift */,
 				E9BE2F0F200E611200953D88 /* agendaViewController.swift */,
 				E9032FE22007BBFF006483FA /* backTableViewController.swift */,
@@ -152,6 +157,15 @@
 				E9A29E202003843E0048FDA5 /* AppDelegate.swift */,
 			);
 			path = delegate;
+			sourceTree = "<group>";
+		};
+		E98C185E201398AC00DD476F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E98C185C2013987D00DD476F /* findUser.swift */,
+			);
+			name = Model;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		E9A29E142003843E0048FDA5 = {
@@ -183,6 +197,7 @@
 				E9032FD52007A03D006483FA /* Controller */,
 				E9032FCB20079C55006483FA /* View */,
 				E930FA5520111186001ECF89 /* delegate */,
+				E98C185E201398AC00DD476F /* Model */,
 				E97916D2200CE3BD00750B10 /* GoogleService-Info.plist */,
 				E9A29E2C2003843F0048FDA5 /* Info.plist */,
 				E9A29E242003843E0048FDA5 /* Main.storyboard */,
@@ -443,7 +458,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E944ACC820122AB600F502D3 /* newEventViewController.swift in Sources */,
 				E92C2AC2200CEE0C00580F31 /* registerUserViewController.swift in Sources */,
+				E98C185D2013987D00DD476F /* findUser.swift in Sources */,
 				E9BE2F0E200E610000953D88 /* chatboxViewController.swift in Sources */,
 				E93C792F2010C99400A718EB /* CalendarHeader.swift in Sources */,
 				E9BE2F10200E611200953D88 /* agendaViewController.swift in Sources */,

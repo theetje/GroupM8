@@ -131,7 +131,6 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
                 }
             }
         }
-        
         return eventsOnSelectedDate
     }
     
