@@ -38,6 +38,8 @@ class newEventViewController: UIViewController {
             databaseQuerysInstance.writeEventToDatabase(userGroup: (user?.group)!, dateSetForEvent: strDate!, eventName: eventTextField.text!)
             // TODO: Geef aan dat de datum is opgeslagen... Segue ofzo.
             print("The date is saved.")
+            dismiss(animated: true, completion: nil)
+            
         } else {
             // TODO: Geef hier userwarning.
             print("textField is leeg")

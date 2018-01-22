@@ -19,6 +19,9 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     @IBOutlet weak var monthLable: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBAction func addNewDate(_ sender: Any) {
+        performSegue(withIdentifier: "addNewDate", sender: self)
+    }
     // Date formatter object.
     let formatter: DateFormatter = {
         let dateFormatter = DateFormatter()

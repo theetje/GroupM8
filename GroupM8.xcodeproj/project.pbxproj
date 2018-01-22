@@ -16,7 +16,9 @@
 		E93C792F2010C99400A718EB /* CalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93C792E2010C99400A718EB /* CalendarHeader.swift */; };
 		E944ACC820122AB600F502D3 /* newEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E944ACC720122AB600F502D3 /* newEventViewController.swift */; };
 		E97916D3200CE3BD00750B10 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E97916D2200CE3BD00750B10 /* GoogleService-Info.plist */; };
-		E98C185D2013987D00DD476F /* findUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98C185C2013987D00DD476F /* findUser.swift */; };
+		E98C18602014DEC600DD476F /* databaseQuerys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98C185F2014DEC600DD476F /* databaseQuerys.swift */; };
+		E98C18632014E08900DD476F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98C18622014E08900DD476F /* User.swift */; };
+		E98C18652014E16100DD476F /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98C18642014E16100DD476F /* Event.swift */; };
 		E9A29E212003843E0048FDA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A29E202003843E0048FDA5 /* AppDelegate.swift */; };
 		E9A29E262003843E0048FDA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9A29E242003843E0048FDA5 /* Main.storyboard */; };
 		E9A29E282003843E0048FDA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9A29E272003843E0048FDA5 /* Assets.xcassets */; };
@@ -58,7 +60,9 @@
 		E93C792E2010C99400A718EB /* CalendarHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeader.swift; sourceTree = "<group>"; };
 		E944ACC720122AB600F502D3 /* newEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newEventViewController.swift; sourceTree = "<group>"; };
 		E97916D2200CE3BD00750B10 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		E98C185C2013987D00DD476F /* findUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = findUser.swift; sourceTree = "<group>"; };
+		E98C185F2014DEC600DD476F /* databaseQuerys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = databaseQuerys.swift; sourceTree = "<group>"; };
+		E98C18622014E08900DD476F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = GroupM8/Model/User.swift; sourceTree = "<group>"; };
+		E98C18642014E16100DD476F /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Event.swift; path = GroupM8/Model/Event.swift; sourceTree = "<group>"; };
 		E9A29E1D2003843E0048FDA5 /* GroupM8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupM8.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9A29E202003843E0048FDA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9A29E252003843E0048FDA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -162,10 +166,20 @@
 		E98C185E201398AC00DD476F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E98C185C2013987D00DD476F /* findUser.swift */,
+				E98C18642014E16100DD476F /* Event.swift */,
+				E98C18622014E08900DD476F /* User.swift */,
 			);
 			name = Model;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		E98C18612014DECF00DD476F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E98C185F2014DEC600DD476F /* databaseQuerys.swift */,
+			);
+			name = Classes;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		E9A29E142003843E0048FDA5 = {
@@ -194,6 +208,7 @@
 		E9A29E1F2003843E0048FDA5 /* GroupM8 */ = {
 			isa = PBXGroup;
 			children = (
+				E98C18612014DECF00DD476F /* Classes */,
 				E9032FD52007A03D006483FA /* Controller */,
 				E9032FCB20079C55006483FA /* View */,
 				E930FA5520111186001ECF89 /* delegate */,
@@ -458,9 +473,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E98C18632014E08900DD476F /* User.swift in Sources */,
 				E944ACC820122AB600F502D3 /* newEventViewController.swift in Sources */,
+				E98C18602014DEC600DD476F /* databaseQuerys.swift in Sources */,
 				E92C2AC2200CEE0C00580F31 /* registerUserViewController.swift in Sources */,
-				E98C185D2013987D00DD476F /* findUser.swift in Sources */,
 				E9BE2F0E200E610000953D88 /* chatboxViewController.swift in Sources */,
 				E93C792F2010C99400A718EB /* CalendarHeader.swift in Sources */,
 				E9BE2F10200E611200953D88 /* agendaViewController.swift in Sources */,
@@ -469,6 +485,7 @@
 				E918F743200F9EE0007ACBAE /* calendarCollectionViewCell.swift in Sources */,
 				E9A29E212003843E0048FDA5 /* AppDelegate.swift in Sources */,
 				E9032FDF2007B3BA006483FA /* SWRevealViewController.m in Sources */,
+				E98C18652014E16100DD476F /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
