@@ -36,23 +36,28 @@ class DatabaseQuerys {
             // Error handeling.
             print(error.localizedDescription)
         }
-        let user = User(email: "", group: "")
-        completion(user)
     }
     
-    func getCalendarEvents(userGroup: String, completion: @escaping (Event) -> ()) {
+    func getCalendarEvents(userGroup: String, completion: @escaping ([Event]) -> ()) {
         ref = Database.database().reference()
-        ref?.child(userGroup).child("Agenda").observe(.value, with:{ (snapshot) in
-            let calandarEvents = snapshot.value as? [String: AnyObject] ?? [:]
-            for calandarEvent in calandarEvents {
-                let value = calandarEvent.value as? NSDictionary
-                let date = value?["date"] as? String ?? ""
-                let eventName = value?["eventName"] as? String ?? ""
-                
+        var events = [Event]()
+        
+        ref?.child("Groepen").child(userGroup).child("Agenda").observe(.value, with: { (snapshot) in
+            // Haal alle data op van de server
+            let calandarEvents = snapshot.value as? [String:AnyObject]
+           
+            for calandarEvent in (calandarEvents?.values)! {
+                let date = calandarEvent["date"] as? String ?? ""
+                let eventName = calandarEvent["eventName"] as? String ?? ""
+
                 let event = Event(date: date, eventName: eventName)
-                print(event)
+                events.append(event)
             }
-        })
+            completion(events)
+        }) { (error) in
+            // Error handeling.
+            print(error.localizedDescription)
+        }
     }
     
     // Schrijf een nieuw evenement naar de database.

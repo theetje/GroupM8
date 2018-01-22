@@ -11,6 +11,9 @@ import JTAppleCalendar
 
 class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate {
     
+    let dataBaseQueryInstence = DatabaseQuerys()
+    var user: User?
+    
     // Outlets:
     @IBOutlet weak var hamburgerButton: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -44,6 +47,16 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         // Deze instelling maakt dat de calender per maand stopt.
         calenderView.scrollingMode = .stopAtEachSection
         
+        // Zoek de data van de gebruiker op.
+        self.dataBaseQueryInstence.findUserInfo() { userInfo in
+            self.user = userInfo
+            // Haal de evenementen op uit de databse.
+            self.dataBaseQueryInstence.getCalendarEvents(userGroup: (self.user?.group)!, completion: { dataBaseData in
+                print("--- databaseData ---")
+                print(dataBaseData)
+            })
+        }
+        
         // Haal data van de server naar een object.
         DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
             // roep aan als object:
@@ -54,6 +67,8 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
                 let stringDate = self.formatter.string(from: date)
                 self.eventsFromTheServer[stringDate] = event
             }
+            
+
             
             // Omdate je geen langzame app wil async data ophalen.
             DispatchQueue.main.async {
