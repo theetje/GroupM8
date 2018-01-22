@@ -13,6 +13,7 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     
     let dataBaseQueryInstence = DatabaseQuerys()
     var user: User?
+    var events = [Event]()
     
     // Outlets:
     @IBOutlet weak var hamburgerButton: UIBarButtonItem!
@@ -52,8 +53,10 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
             self.user = userInfo
             // Haal de evenementen op uit de databse.
             self.dataBaseQueryInstence.getCalendarEvents(userGroup: (self.user?.group)!, completion: { dataBaseData in
-                print("--- databaseData ---")
-                print(dataBaseData)
+                
+                self.events = dataBaseData
+                print("--- events ---")
+                print(self.events)
             })
         }
         
@@ -63,13 +66,14 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
             let serverObject = self.getServerEvents()
             
             // Loop door de waarden heen en formateer
-            for (date, event) in serverObject {
-                let stringDate = self.formatter.string(from: date)
-                self.eventsFromTheServer[stringDate] = event
-            }
-            
-
-            
+            for event in self.events {
+                self.formatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZ"
+                let date = event.date!
+                let stringDate = self.formatter.date(from: date)
+                
+                self.formatter.dateFormat = "yyyy MM dd"
+                self.eventsFromTheServer[self.formatter.string(from: stringDate!)] = event.eventName!
+            }            
             // Omdate je geen langzame app wil async data ophalen.
             DispatchQueue.main.async {
                 self.calenderView.reloadData()

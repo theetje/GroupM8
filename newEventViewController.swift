@@ -22,13 +22,17 @@ class newEventViewController: UIViewController {
     @IBOutlet weak var eventTextField: UITextField!
     
     // Actions:
+    @IBAction func cancelNewEvent(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func datePicker(_ sender: Any) {
         let dateFormatter = DateFormatter()
         
         dateFormatter.dateStyle = DateFormatter.Style.short
         dateFormatter.timeStyle = DateFormatter.Style.short
         
-        dateFormatter.dateFormat = "yyyy MM dd HH:mm:ss"
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZ"
         
         strDate = dateFormatter.string(from: datePickerOutlet.date)
     }
