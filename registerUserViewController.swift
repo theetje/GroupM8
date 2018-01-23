@@ -23,24 +23,27 @@ class registerUserViewController: UIViewController, UITextFieldDelegate {
     @IBAction func registerUser(_ sender: Any) {
         // Kijk of de wachtwoord velden het zelfde zijn en niet leeg.
         if mailTextField.text != "" && wachtwoordTextField.text != "" {
-            if groupIDTextField.text != "" {
-                print("Group is not empty")
-            } else {
-                print("group is empty")
-            }
             if wachtwoordTextField.text == wachtwoordTextFieldOpnieuw.text {
-                Auth.auth().createUserAndRetrieveData(withEmail: mailTextField.text!, password: wachtwoordTextField.text!, completion: { (user, error) in
-                    if user != nil {
-                        // Succes ga naar de pagina die gewenst is.
-                        print("--- User account made ---")
-                        self.performSegue(withIdentifier: "registeringComplete", sender: self)
-                    } else {
-                        // Geef een fout melding indien nodig.
-                        if let myError = error?.localizedDescription {
-                            print("--- Error description: \(myError) ---")
+                if groupIDTextField.text != "" {
+                    // Maak de acount aan.
+                    Auth.auth().createUserAndRetrieveData(withEmail: mailTextField.text!, password: wachtwoordTextField.text!, completion: { (user, error) in
+                        if user != nil {
+                            // Maak de groep aan.
+                            let databaseQueryInstence = DatabaseQuerys()
+                            databaseQueryInstence.writeNewUserToDatabase(userGroup: self.groupIDTextField.text!, userMail: self.mailTextField.text!)
+                            // Succes ga naar de pagina die gewenst is.
+                            print("--- User account made ---")
+                            self.performSegue(withIdentifier: "registeringComplete", sender: self)
+                        } else {
+                            // Geef een fout melding indien nodig.
+                            if let myError = error?.localizedDescription {
+                                print("--- Error description: \(myError) ---")
+                            }
                         }
-                    }
-                })
+                    })
+                } else {
+                    print("group is empty")
+                }
             } else {
                 // Wachtwoorden is niet het zelfde.
                 print("--- Password field are not the same ---")
@@ -55,8 +58,9 @@ class registerUserViewController: UIViewController, UITextFieldDelegate {
     // Overrides:
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        // Haald het toetsenbord weg als je ergens anders tapped.
+        self.hideKeyboardWhenTappedAround()
     }
 
     override func didReceiveMemoryWarning() {

@@ -74,4 +74,20 @@ class DatabaseQuerys {
         eventID?.child("date").setValue(dateSetForEvent)
         eventID?.child("eventName").setValue(eventName)
     }
+    
+    // Schrijf een nieuw evenement naar de database.
+    func writeNewUserToDatabase(userGroup: String, userMail: String) {
+        // Maak input variabelen en ga naar de juiste groep.
+        let userGroup = userGroup
+        let userMail = userMail
+        
+        let userID = Auth.auth().currentUser?.uid
+        
+        // Maak een referenctie naar de database en een eventID
+        ref = Database.database().reference()
+        let newUserRef = ref?.child("Users").child(userID!)
+        
+        newUserRef?.child("group").setValue(userGroup)
+        newUserRef?.child("mail").setValue(userMail)
+    }
 }
