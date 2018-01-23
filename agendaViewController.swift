@@ -113,6 +113,12 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         handleCellTextColor(cell: myCustomCell, cellState: cellState)
         handleTodaysDate(cell: myCustomCell, cellState: cellState)
         handleCellEvents(cell: myCustomCell, cellState: cellState)
+        
+        if cellState.dateBelongsTo == .thisMonth {
+            cell?.isHidden = false
+        } else {
+            cell?.isHidden = true
+        }
     }
     
     var eventData = [String:String]()
@@ -176,7 +182,6 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
                 cell.dateLable.textColor = UIColor.black
             } else {
                 cell.dateLable.textColor = UIColor.gray
-//                cell.isHidden = true
             }
         }
     }
