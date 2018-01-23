@@ -14,6 +14,15 @@ class DatabaseQuerys {
     // Database reference
     var ref: DatabaseReference?
     
+    // Date formatter object.
+    let formatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = Calendar.current.timeZone
+        dateFormatter.locale = Calendar.current.locale
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZ"
+        return dateFormatter
+    }()
+    
     // Functie met completion handler omdat anders de retrun altijd leeg is:
     func findUserInfo(completion: @escaping (User) -> ())  {
         // Haal de userID op waaronder info is opgeslagen in de database.
@@ -26,11 +35,12 @@ class DatabaseQuerys {
         ref?.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value as Dictionary object.
             let value = snapshot.value as? NSDictionary
-            let group = value?["group"] as? String ?? ""
-            let email = value?["mail"] as? String ?? ""
+            let group = value?["Group"] as? String ?? ""
+            let email = value?["Mail"] as? String ?? ""
+            let chatName = value?["ChatName"] as? String ?? ""
             
             // gelukt mooi... maak een user object.
-            let user = User(email: email, group: group)
+            let user = User(email: email, group: group, chatName: chatName)
             completion(user)
         }) { (error) in
             // Error handeling.
@@ -42,13 +52,13 @@ class DatabaseQuerys {
         ref = Database.database().reference()
         var events = [Event]()
         
-        ref?.child("Groepen").child(userGroup).child("Agenda").observe(.value, with: { (snapshot) in
+        ref?.child("Group").child(userGroup).child("Agenda").observe(.value, with: { (snapshot) in
             // Haal alle data op van de server
             if let calandarEvents = snapshot.value as? [String:AnyObject] {
                 // Verwerk de data
                 for calandarEvent in (calandarEvents.values) {
-                    let date = calandarEvent["date"] as? String ?? ""
-                    let eventName = calandarEvent["eventName"] as? String ?? ""
+                    let date = calandarEvent["Date"] as? String ?? ""
+                    let eventName = calandarEvent["EventName"] as? String ?? ""
                     
                     let event = Event(date: date, eventName: eventName)
                     events.append(event)
@@ -56,7 +66,6 @@ class DatabaseQuerys {
             } else {
                 print("Events zijn niet opgehaald.")
             }
-
             completion(events)
         }) { (error) in
             // Error handeling.
@@ -64,34 +73,65 @@ class DatabaseQuerys {
         }
     }
     
-    // Schrijf een nieuw evenement naar de database.
-    func writeEventToDatabase(userGroup: String, dateSetForEvent: String, eventName: String) {
-        // Maak input variabelen en ga naar de juiste groep.
-        let userGroup = userGroup
-        let dateSetForEvent = dateSetForEvent
-        let eventName = eventName
-        
-        // Maak een referenctie naar de database en een eventID
+    func getMessages(userGroup: String, completion: @escaping ([Message]) -> ()) {
         ref = Database.database().reference()
-        let eventID = ref?.child("Groepen").child(userGroup).child("Agenda").childByAutoId()
-        
-        eventID?.child("date").setValue(dateSetForEvent)
-        eventID?.child("eventName").setValue(eventName)
+        var messages = [Message]()
+        ref?.child("Group").child(userGroup).child("Messageboard").observe(.value, with: { (snapshot) in
+            if let message = snapshot.value as? [String: AnyObject] {
+                // verwerk data
+                for messageMetaData in message.values {
+                    let MessageText = messageMetaData["MessageText"] as? String ?? ""
+                    let MessageWriter = messageMetaData["MessageWriter"] as? String ?? ""
+                    let TimeStamp = messageMetaData["TimeStamp"] as? String ?? ""
+                    
+                    let message = Message(MessageText: MessageText, MessageWriter: MessageWriter, TimeStamp: TimeStamp)
+                    messages.append(message)
+                }
+            } else {
+                print("Er zijn geen berichten opgehaald.")
+            }
+            completion(messages)
+            messages.removeAll()
+        }) {(error) in
+            // Error handling
+            print(error.localizedDescription)
+        }
     }
     
     // Schrijf een nieuw evenement naar de database.
-    func writeNewUserToDatabase(userGroup: String, userMail: String) {
-        // Maak input variabelen en ga naar de juiste groep.
-        let userGroup = userGroup
-        let userMail = userMail
+    func writeEventToDatabase(userGroup: String, dateSetForEvent: String, eventName: String) {
+        // Initieer ref naar de datbase.
+        ref = Database.database().reference()
+        let eventID = ref?.child("Group").child(userGroup).child("Agenda").childByAutoId()
         
+        eventID?.child("Date").setValue(dateSetForEvent)
+        eventID?.child("EventName").setValue(eventName)
+    }
+    
+    // Schrijf een nieuw evenement naar de database.
+    func writeNewUserToDatabase(userGroup: String, userMail: String, chatName: String) {
+        // Initieer ref naar de datbase.
         let userID = Auth.auth().currentUser?.uid
         
         // Maak een referenctie naar de database en een eventID
         ref = Database.database().reference()
         let newUserRef = ref?.child("Users").child(userID!)
         
-        newUserRef?.child("group").setValue(userGroup)
-        newUserRef?.child("mail").setValue(userMail)
+        newUserRef?.child("Group").setValue(userGroup)
+        newUserRef?.child("Mail").setValue(userMail)
+        newUserRef?.child("ChatName").setValue(chatName)
+    }
+    
+    func writeMessageToDatabase(userGroup: String, userChatName: String, message: String) {
+        // Initieer ref naar de datbase.
+        ref = Database.database().reference()
+        let newMessageboardRef = ref?.child("Group").child(userGroup).child("Messageboard").childByAutoId()
+        let timestamp = Date()
+        
+        let formatedTime = formatter.string(from: timestamp)
+        
+        newMessageboardRef?.child("MessageText").setValue(message)
+        newMessageboardRef?.child("MessageWriter").setValue(userChatName)
+        newMessageboardRef?.child("TimeStamp").setValue(formatedTime)
     }
 }

@@ -27,6 +27,7 @@
 		E9A29E412003843F0048FDA5 /* GroupM8UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A29E402003843F0048FDA5 /* GroupM8UITests.swift */; };
 		E9BE2F0E200E610000953D88 /* chatboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F0D200E610000953D88 /* chatboxViewController.swift */; };
 		E9BE2F10200E611200953D88 /* agendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F0F200E611200953D88 /* agendaViewController.swift */; };
+		E9DE9ADE2017676F0088471A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE9ADD2017676F0088471A /* Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		E9A29E422003843F0048FDA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9BE2F0D200E610000953D88 /* chatboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatboxViewController.swift; sourceTree = "<group>"; };
 		E9BE2F0F200E611200953D88 /* agendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = agendaViewController.swift; sourceTree = "<group>"; };
+		E9DE9ADD2017676F0088471A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Message.swift; path = GroupM8/Model/Message.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 		E98C185E201398AC00DD476F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E9DE9ADD2017676F0088471A /* Message.swift */,
 				E98C18642014E16100DD476F /* Event.swift */,
 				E98C18622014E08900DD476F /* User.swift */,
 			);
@@ -213,9 +216,9 @@
 				E9032FCB20079C55006483FA /* View */,
 				E930FA5520111186001ECF89 /* delegate */,
 				E98C185E201398AC00DD476F /* Model */,
+				E9A29E242003843E0048FDA5 /* Main.storyboard */,
 				E97916D2200CE3BD00750B10 /* GoogleService-Info.plist */,
 				E9A29E2C2003843F0048FDA5 /* Info.plist */,
-				E9A29E242003843E0048FDA5 /* Main.storyboard */,
 				E9A29E272003843E0048FDA5 /* Assets.xcassets */,
 				E9A29E292003843E0048FDA5 /* LaunchScreen.storyboard */,
 			);
@@ -486,6 +489,7 @@
 				E9A29E212003843E0048FDA5 /* AppDelegate.swift in Sources */,
 				E9032FDF2007B3BA006483FA /* SWRevealViewController.m in Sources */,
 				E98C18652014E16100DD476F /* Event.swift in Sources */,
+				E9DE9ADE2017676F0088471A /* Message.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
