@@ -14,8 +14,3 @@ struct Event {
     var eventName: String?
 }
 
-// Meervoud van Event is Events als array.
-//struct Events {
-//    var Events: [Event]
-//}
-

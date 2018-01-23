@@ -18,7 +18,7 @@ class registerUserViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var wachtwoordTextField: UITextField!
     @IBOutlet weak var wachtwoordTextFieldOpnieuw: UITextField!
     @IBOutlet weak var groupIDTextField: UITextField!
-    
+    @IBOutlet weak var chatNameTextField: UITextField!
     // Actions:
     @IBAction func registerUser(_ sender: Any) {
         // Kijk of de wachtwoord velden het zelfde zijn en niet leeg.
@@ -30,7 +30,11 @@ class registerUserViewController: UIViewController, UITextFieldDelegate {
                         if user != nil {
                             // Maak de groep aan.
                             let databaseQueryInstence = DatabaseQuerys()
-                            databaseQueryInstence.writeNewUserToDatabase(userGroup: self.groupIDTextField.text!, userMail: self.mailTextField.text!)
+                            databaseQueryInstence.writeNewUserToDatabase(userGroup: self.groupIDTextField.text!, userMail: self.mailTextField.text!, chatName: self.chatNameTextField.text!)
+                            
+                            User.shared.chatName = self.chatNameTextField.text!
+                            User.shared.email = self.mailTextField.text!
+                            User.shared.group = self.groupIDTextField.text!
                             // Succes ga naar de pagina die gewenst is.
                             print("--- User account made ---")
                             self.performSegue(withIdentifier: "registeringComplete", sender: self)

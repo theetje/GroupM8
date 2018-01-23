@@ -8,7 +8,11 @@
 
 import Foundation
 
+// Event struct zoals ze staan in de database
 struct User {
+    static var shared = User()
+    
     var email: String?
     var group: String?
+    var chatName: String?
 }

@@ -17,7 +17,7 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     
     // Outlets:
     @IBOutlet weak var hamburgerButton: UIBarButtonItem!
-    @IBOutlet weak var collectionView: UICollectionView!
+//    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var calenderView: JTAppleCalendarView!
     @IBOutlet weak var yearLable: UILabel!
     @IBOutlet weak var monthLable: UILabel!
@@ -72,12 +72,7 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
                     self.calenderView.reloadData()
                 }
             })
-        }
-        // Haal data van de server naar een object.
-//        DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
-//            // roep aan als object:
-//        }
-        
+        }        
         // setup van de cell waar 1 dag zich in bevind.
         setupCalandarView()
         
@@ -181,6 +176,7 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
                 cell.dateLable.textColor = UIColor.black
             } else {
                 cell.dateLable.textColor = UIColor.gray
+//                cell.isHidden = true
             }
         }
     }
