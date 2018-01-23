@@ -11,9 +11,11 @@ import FirebaseAuth
 
 class chatboxViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    // Test variabelen
-//    let testArray = ["first" : "some description", "second": "nog meer info", "third": "laatste info"]
+    // Maak array die berichten bevat.
     var MessageArray = [Message]()
+    
+    // Database clas instance
+    let databaseQuerysInstance = DatabaseQuerys()
     
     // Outlets:
     @IBOutlet weak var tableView: UITableView!
@@ -22,16 +24,12 @@ class chatboxViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // Actions
     @IBAction func sendMessage(_ sender: Any) {
-        
+        // Controller of er een bericht is geschreven.
         if messageTextField.text != "" {
-            let DatabaseQuerysInstanse = DatabaseQuerys()
+            databaseQuerysInstance.writeMessageToDatabase(userGroup: User.shared.group!, userChatName: User.shared.chatName!, message: self.messageTextField.text!)
             
-            DatabaseQuerysInstanse.findUserInfo(completion: { userInfo in
-                DatabaseQuerysInstanse.writeMessageToDatabase(userGroup: userInfo.group!, userChatName: userInfo.chatName!, message: self.messageTextField.text!)
-                // Maak het text veld weer leeg.
-                self.messageTextField.text = ""
-                
-            })
+            // Maak het text veld weer leeg.
+            self.messageTextField.text = ""
         } else {
             print("TextField is empty")
         }
@@ -49,27 +47,21 @@ class chatboxViewController: UIViewController, UITableViewDataSource, UITableVie
         hamburgerButton.action = #selector(SWRevealViewController.revealToggle(_:))
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
-        let DatabaseQuerysInstance = DatabaseQuerys()
-        
-        DatabaseQuerysInstance.findUserInfo() { userInfo in
-            let user = userInfo
-            self.MessageArray.removeAll()
-            // Haal de evenementen op uit de databse.
-            DatabaseQuerysInstance.getMessages(userGroup: user.group!, completion: { messagesFromDatabase in
-                if messagesFromDatabase.count > 0 {
-                    var tempArray = [Message]()
-                    for message in messagesFromDatabase {
-                        tempArray.append(message)
-                    }
-                    self.MessageArray = tempArray
-                    
-                    // Omdate je geen langzame app wil async data ophalen.
-                    self.tableView.reloadData()
-                } else {
-                    print("Berichten niet opgehaald")
+        // Haal de evenementen op uit de databse.
+        databaseQuerysInstance.getMessages(userGroup: User.shared.group!, completion: { messagesFromDatabase in
+            if messagesFromDatabase.count > 0 {
+                var tempArray = [Message]()
+                for message in messagesFromDatabase {
+                    tempArray.append(message)
                 }
-            })
-        }
+                self.MessageArray = tempArray
+                
+                // Omdate je geen langzame app wil async data ophalen.
+                self.tableView.reloadData()
+            } else {
+                print("Berichten niet opgehaald")
+            }
+        })
     }
 
     // Functions:
@@ -84,8 +76,11 @@ class chatboxViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath)
 
+        // Sorteer de berichten van oud naar nieuw en keer om.
         MessageArray.sort(by: { $0.TimeStamp?.compare($1.TimeStamp!) == .orderedAscending })
         MessageArray.reverse()
+        
+        // Zet berichten in de cell.
         if let messageText = MessageArray[indexPath.row].MessageText {
             cell.textLabel?.text = messageText
         }

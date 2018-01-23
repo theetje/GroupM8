@@ -39,7 +39,7 @@ class newEventViewController: UIViewController {
     
     @IBAction func saveTheDate(_ sender: Any) {
         if eventTextField.text != "" {
-            databaseQuerysInstance.writeEventToDatabase(userGroup: (user?.group)!, dateSetForEvent: strDate!, eventName: eventTextField.text!)
+            databaseQuerysInstance.writeEventToDatabase(userGroup: User.shared.group!, dateSetForEvent: strDate!, eventName: eventTextField.text!)
             // TODO: Geef aan dat de datum is opgeslagen... Segue ofzo.
             print("The date is saved.")
             dismiss(animated: true, completion: nil)
@@ -53,12 +53,6 @@ class newEventViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Zoek de data van de gebruiker op.
-        databaseQuerysInstance.findUserInfo() { userInfo in
-            self.user = userInfo
-        }
-        
         // Verwijder toetsenbord bij tab
         self.hideKeyboardWhenTappedAround()
     }
