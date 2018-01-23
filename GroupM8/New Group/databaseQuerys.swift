@@ -44,15 +44,19 @@ class DatabaseQuerys {
         
         ref?.child("Groepen").child(userGroup).child("Agenda").observe(.value, with: { (snapshot) in
             // Haal alle data op van de server
-            let calandarEvents = snapshot.value as? [String:AnyObject]
-           
-            for calandarEvent in (calandarEvents?.values)! {
-                let date = calandarEvent["date"] as? String ?? ""
-                let eventName = calandarEvent["eventName"] as? String ?? ""
-
-                let event = Event(date: date, eventName: eventName)
-                events.append(event)
+            if let calandarEvents = snapshot.value as? [String:AnyObject] {
+                // Verwerk de data
+                for calandarEvent in (calandarEvents.values) {
+                    let date = calandarEvent["date"] as? String ?? ""
+                    let eventName = calandarEvent["eventName"] as? String ?? ""
+                    
+                    let event = Event(date: date, eventName: eventName)
+                    events.append(event)
+                }
+            } else {
+                print("Events zijn niet opgehaald.")
             }
+
             completion(events)
         }) { (error) in
             // Error handeling.

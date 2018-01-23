@@ -57,28 +57,26 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
                 self.events = dataBaseData
                 print("--- events ---")
                 print(self.events)
+                
+                // Loop door de waarden heen en formateer
+                for event in self.events {
+                    self.formatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZ"
+                    let date = event.date!
+                    let stringDate = self.formatter.date(from: date)
+                    
+                    self.formatter.dateFormat = "yyyy MM dd"
+                    self.eventsFromTheServer[self.formatter.string(from: stringDate!)] = event.eventName!
+                }
+                // Omdate je geen langzame app wil async data ophalen.
+                DispatchQueue.main.async {
+                    self.calenderView.reloadData()
+                }
             })
         }
-        
         // Haal data van de server naar een object.
-        DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
-            // roep aan als object:
-            let serverObject = self.getServerEvents()
-            
-            // Loop door de waarden heen en formateer
-            for event in self.events {
-                self.formatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZ"
-                let date = event.date!
-                let stringDate = self.formatter.date(from: date)
-                
-                self.formatter.dateFormat = "yyyy MM dd"
-                self.eventsFromTheServer[self.formatter.string(from: stringDate!)] = event.eventName!
-            }            
-            // Omdate je geen langzame app wil async data ophalen.
-            DispatchQueue.main.async {
-                self.calenderView.reloadData()
-            }
-        }
+//        DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
+//            // roep aan als object:
+//        }
         
         // setup van de cell waar 1 dag zich in bevind.
         setupCalandarView()
@@ -284,7 +282,9 @@ extension agendaViewController: JTAppleCalendarViewDelegate {
 extension agendaViewController: JTAppleCalendarViewDataSource {
     // Extentie voor de DataSource
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-
+        // Zet de dateFormater op de juiste datum.
+        formatter.dateFormat = "yyyy MM dd"
+        
         // Stel de start en eind datum van de calendar in.
         let startDate = formatter.date(from: "2010 01 01")
         let endDate = formatter.date(from: "2030 12 31")

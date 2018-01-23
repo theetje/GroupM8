@@ -58,6 +58,9 @@ class newEventViewController: UIViewController {
         databaseQuerysInstance.findUserInfo() { userInfo in
             self.user = userInfo
         }
+        
+        // Verwijder toetsenbord bij tab
+        self.hideKeyboardWhenTappedAround()
     }
 
 
