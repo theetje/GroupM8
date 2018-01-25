@@ -58,7 +58,8 @@ class DatabaseQuerys {
             if let calandarEvents = snapshot.value as? [String:AnyObject] {
                 // Verwerk de data
                 for calandarEvent in (calandarEvents.values) {
-                    let eventID = calandarEvent["EventID"] as? String ?? ""
+                    let eventID = calandarEvent["EventID"] as? String ?? "no id" 
+                    print(eventID)
                     let date = calandarEvent["Date"] as? String ?? ""
                     let eventName = calandarEvent["EventName"] as? String ?? ""
                     let eventDesctiption = calandarEvent["eventDesctiption"] as? String ?? ""

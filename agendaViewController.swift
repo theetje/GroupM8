@@ -241,8 +241,10 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         cell.eventTimeLabel?.text = formatter.string(from: formattedTime!)
         cell.eventNameLabel?.text = eventData[indexPath.row].eventName
         cell.eventDescriptionLabel.text = eventData[indexPath.row].eventDesctiption
-        
-        
+        cell.dateID?.text = eventData[indexPath.row].eventID
+//        let stringAmount = eventData[indexPath.row].partisipents as String
+//        cell.counterLabel?.text = stringAmount
+//        
         return cell
     }
 }

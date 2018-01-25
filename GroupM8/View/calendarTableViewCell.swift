@@ -14,13 +14,15 @@ class calendarTableViewCell: UITableViewCell {
     @IBOutlet weak var eventDescriptionLabel: UILabel!
     @IBOutlet weak var eventTimeLabel: UILabel!
     @IBOutlet weak var counterLabel: UILabel!
+    @IBOutlet weak var dateID: UILabel!
     
     @IBAction func goToEvent(_ sender: Any) {
-        print("index is:")
+        print("Event id: \(dateID.text!)")
         
     }
     override func awakeFromNib() {
         super.awakeFromNib()
+//        dateID.isHidden = true
         // Initialization code
     }
 
