@@ -14,6 +14,7 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     let dataBaseQueryInstence = DatabaseQuerys()
     var user: User?
     var events = [Event]()
+    var eventData = [Event]()
     
     // Outlets:
     @IBOutlet weak var hamburgerButton: UIBarButtonItem!
@@ -39,12 +40,13 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     let todaysDate = Date()
     
     // Gebruik een dict om evenementen in opteslaan van de server.
-    var eventsFromTheServer: [String: String] = [:]
+    var eventDates: [String] = []
     
     // Overrides:
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // setup van de cell waar 1 dag zich in bevind.
+        setupCalandarView()
         // Deze instelling maakt dat de calender per maand stopt.
         calenderView.scrollingMode = .stopAtEachSection
         
@@ -55,8 +57,6 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
             self.dataBaseQueryInstence.getCalendarEvents(userGroup: (self.user?.group)!, completion: { dataBaseData in
                 
                 self.events = dataBaseData
-                print("--- events ---")
-                print(self.events)
                 
                 // Loop door de waarden heen en formateer
                 for event in self.events {
@@ -65,16 +65,15 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
                     let stringDate = self.formatter.date(from: date)
                     
                     self.formatter.dateFormat = "yyyy MM dd"
-                    self.eventsFromTheServer[self.formatter.string(from: stringDate!)] = event.eventName!
+                    self.eventDates.append(self.formatter.string(from: stringDate!))
+//                    self.eventDates[self.formatter.string(from: stringDate!)] = event.eventName!
                 }
-                // Omdate je geen langzame app wil async data ophalen.
-                DispatchQueue.main.async {
-                    self.calenderView.reloadData()
-                }
+                // Reload data to show.
+                self.calenderView.reloadData()
+                self.tableView.reloadData()
             })
         }        
-        // setup van de cell waar 1 dag zich in bevind.
-        setupCalandarView()
+
         
         // Scroll naar de huidige datum, zonder animatie
         calenderView.scrollToDate(Date(), animateScroll: false )
@@ -121,43 +120,46 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         }
     }
     
-    var eventData = [String:String]()
-    
     // Configureer event tableView.
     func configureTableView(cell: JTAppleCell?, cellState: CellState) {
         guard let myCustomCell = cell as? calendarCollectionViewCell else { return }
         
-        let selectedEventData = handleSelectedDateEvents(cell: myCustomCell, cellState: cellState)
-        eventData = selectedEventData
+        let bool = eventDates.contains { element in
+            formatter.dateFormat = "yyyy MM dd"
+            return element == formatter.string(from: cellState.date)
+        }
         
-        tableView.reloadData()
+        if bool == true {
+            eventData = handleSelectedDateEvents(cell: myCustomCell, cellState: cellState)
+            tableView.reloadData()
+        } else {
+            eventData = [Event]()
+        }
     }
     
     // Functie die info laat zien van de geselecteerde datum.
-    func handleSelectedDateEvents(cell: calendarCollectionViewCell, cellState: CellState) -> Dictionary < String, String> {
-        // Zorg voor zekerheid mbo de formatter.
-        formatter.dateFormat = "yyyy MM dd"
-        var eventsOnSelectedDate = eventsFromTheServer
+    func handleSelectedDateEvents(cell: calendarCollectionViewCell, cellState: CellState) -> [Event] {
+        var eventsOnDate = [Event]()
         
-        if cellState.isSelected {
-            for dates in eventsOnSelectedDate {
-                if formatter.string(from: cellState.date) != dates.key {
-                    eventsOnSelectedDate.removeValue(forKey: dates.key)
-                }
-            }
-        } else {
-            for dates in eventsOnSelectedDate {
-                if formatter.string(from: todaysDate) == dates.key {
-                    eventsOnSelectedDate.removeValue(forKey: dates.key)
-                }
+        for event in events {
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZ"
+            let eventDate = formatter.date(from: event.date!)
+            
+            formatter.dateFormat = "yyyy MM dd"
+            
+            if formatter.string(from: eventDate!) == formatter.string(from: cellState.date) {
+                eventsOnDate.append(event)
             }
         }
-        return eventsOnSelectedDate
+        return eventsOnDate
     }
     
     // Laat de evenementen zien die opgehaald worden van de server.
     func handleCellEvents(cell: calendarCollectionViewCell, cellState: CellState) {
-        cell.dotSelecter.isHidden = !eventsFromTheServer.contains { $0.key == formatter.string(from: cellState.date) }
+        cell.dotSelecter.isHidden = !eventDates.contains { element in
+            formatter.dateFormat = "yyyy MM dd"
+            return element == formatter.string(from: cellState.date)
+        }
     }
     
     // Functie die de huidige datum laat zien.
@@ -230,8 +232,9 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath)
         
-        let keys = Array(eventData.values)[indexPath.row]
-        cell.textLabel?.text = keys
+        
+        let eventName = eventData[indexPath.row].eventName
+        cell.textLabel?.text = eventName
         
         return cell
     }
@@ -301,20 +304,20 @@ extension agendaViewController: JTAppleCalendarViewDataSource {
 }
 
 // Hieronder haalt de data uit de database
-extension agendaViewController {
-    func getServerEvents() -> [Date: String] {
-        formatter.dateFormat = "yyyy MM dd"
-        
-        return [
-            formatter.date(from: "2018 01 03")!: "Verjaardag",
-            formatter.date(from: "2018 01 10")!: "Iets anders te doen",
-            formatter.date(from: "2018 02 12")!: "Nog een evenement",
-            formatter.date(from: "2018 03 03")!: "Zwembad feeste",
-            formatter.date(from: "2018 03 20")!: "Geen feestje",
-            formatter.date(from: "2018 02 01")!: "DDAY!!",
-        ]
-    }
-}
+//extension agendaViewController {
+//    func getServerEvents() -> [Date: String] {
+//        formatter.dateFormat = "yyyy MM dd"
+//
+//        return [
+//            formatter.date(from: "2018 01 03")!: "Verjaardag",
+//            formatter.date(from: "2018 01 10")!: "Iets anders te doen",
+//            formatter.date(from: "2018 02 12")!: "Nog een evenement",
+//            formatter.date(from: "2018 03 03")!: "Zwembad feeste",
+//            formatter.date(from: "2018 03 20")!: "Geen feestje",
+//            formatter.date(from: "2018 02 01")!: "DDAY!!",
+//        ]
+//    }
+//}
 
 extension UIView {
     func bounce() {
