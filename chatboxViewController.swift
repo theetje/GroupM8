@@ -35,6 +35,7 @@ class chatboxViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    // Overrides:
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,7 +64,11 @@ class chatboxViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         })
     }
-
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
     // Functions:
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return MessageArray.count
@@ -75,7 +80,7 @@ class chatboxViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath)
-
+        
         // Sorteer de berichten van oud naar nieuw en keer om.
         MessageArray.sort(by: { $0.TimeStamp?.compare($1.TimeStamp!) == .orderedAscending })
         MessageArray.reverse()
@@ -90,11 +95,5 @@ class chatboxViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
         return cell
-    }
-    
-    // Overrides:
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

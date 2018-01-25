@@ -27,6 +27,7 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     @IBAction func addNewDate(_ sender: Any) {
         performSegue(withIdentifier: "addNewDate", sender: self)
     }
+    
     // Date formatter object.
     let formatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -35,12 +36,6 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         dateFormatter.dateFormat = "yyyy MM dd"
         return dateFormatter
     }()
-    
-    // Welke dag is het vandaag.
-    let todaysDate = Date()
-    
-    // Gebruik een dict om evenementen in opteslaan van de server.
-    var eventDates: [String] = []
     
     // Overrides:
     override func viewDidLoad() {
@@ -58,16 +53,6 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
                 
                 self.events = dataBaseData
                 
-                // Loop door de waarden heen en formateer
-                for event in self.events {
-                    self.formatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZ"
-                    let date = event.date!
-                    let stringDate = self.formatter.date(from: date)
-                    
-                    self.formatter.dateFormat = "yyyy MM dd"
-                    self.eventDates.append(self.formatter.string(from: stringDate!))
-//                    self.eventDates[self.formatter.string(from: stringDate!)] = event.eventName!
-                }
                 // Reload data to show.
                 self.calenderView.reloadData()
                 self.tableView.reloadData()
@@ -124,9 +109,12 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     func configureTableView(cell: JTAppleCell?, cellState: CellState) {
         guard let myCustomCell = cell as? calendarCollectionViewCell else { return }
         
-        let bool = eventDates.contains { element in
+        let bool = events.contains { event in
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZ"
+            let eventDate = formatter.date(from: event.date!)
+            
             formatter.dateFormat = "yyyy MM dd"
-            return element == formatter.string(from: cellState.date)
+            return formatter.string(from: eventDate!) == formatter.string(from: cellState.date)
         }
         
         if bool == true {
@@ -139,8 +127,8 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     
     // Functie die info laat zien van de geselecteerde datum.
     func handleSelectedDateEvents(cell: calendarCollectionViewCell, cellState: CellState) -> [Event] {
+        // Geef en zoek evens die op de datum plaats vinden.
         var eventsOnDate = [Event]()
-        
         for event in events {
             formatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZ"
             let eventDate = formatter.date(from: event.date!)
@@ -156,9 +144,13 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     
     // Laat de evenementen zien die opgehaald worden van de server.
     func handleCellEvents(cell: calendarCollectionViewCell, cellState: CellState) {
-        cell.dotSelecter.isHidden = !eventDates.contains { element in
+        // Kijk of er events zijn geladen en of deze of de cellState.date plaatsvinden.
+        cell.dotSelecter.isHidden = !events.contains { event in
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZ"
+            let eventDate = formatter.date(from: event.date!)
+            
             formatter.dateFormat = "yyyy MM dd"
-            return element == formatter.string(from: cellState.date)
+            return formatter.string(from: eventDate!) == formatter.string(from: cellState.date)
         }
     }
     
@@ -168,7 +160,7 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         formatter.dateFormat = "yyyy MM dd"
         
         // Kijk naar de huidige data en pas de text aan.
-        let todaysDateString = formatter.string(from: todaysDate)
+        let todaysDateString = formatter.string(from: Date())
         let monthDateString = formatter.string(from: cellState.date)
         if todaysDateString == monthDateString {
             cell.dateLable.textColor = UIColor.blue
@@ -302,22 +294,6 @@ extension agendaViewController: JTAppleCalendarViewDataSource {
 
     }
 }
-
-// Hieronder haalt de data uit de database
-//extension agendaViewController {
-//    func getServerEvents() -> [Date: String] {
-//        formatter.dateFormat = "yyyy MM dd"
-//
-//        return [
-//            formatter.date(from: "2018 01 03")!: "Verjaardag",
-//            formatter.date(from: "2018 01 10")!: "Iets anders te doen",
-//            formatter.date(from: "2018 02 12")!: "Nog een evenement",
-//            formatter.date(from: "2018 03 03")!: "Zwembad feeste",
-//            formatter.date(from: "2018 03 20")!: "Geen feestje",
-//            formatter.date(from: "2018 02 01")!: "DDAY!!",
-//        ]
-//    }
-//}
 
 extension UIView {
     func bounce() {

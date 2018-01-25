@@ -13,9 +13,17 @@ class newEventViewController: UIViewController {
     // ref wordt een DatabaseReference object
     let databaseQuerysInstance = DatabaseQuerys()
     var ref : DatabaseReference!
-    var strDate: String?
     var user: User?
-    
+    var strDate = Date()
+    // Date formatter object.
+    let formatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = Calendar.current.timeZone
+        dateFormatter.locale = Calendar.current.locale
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZ"
+        return dateFormatter
+    }()
+
     // Outlets:
     // Voor de datepicker is een Outlet en een action nodig, action meet verandering
     @IBOutlet weak var datePickerOutlet: UIDatePicker!
@@ -27,28 +35,20 @@ class newEventViewController: UIViewController {
     }
     
     @IBAction func datePicker(_ sender: Any) {
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateStyle = DateFormatter.Style.short
-        dateFormatter.timeStyle = DateFormatter.Style.short
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZ"
-        
-        strDate = dateFormatter.string(from: datePickerOutlet.date)
+        // Verander datum als dit moet
+        strDate = datePickerOutlet.date
     }
     
     @IBAction func saveTheDate(_ sender: Any) {
         if eventTextField.text != "" {
-            databaseQuerysInstance.writeEventToDatabase(userGroup: User.shared.group!, dateSetForEvent: strDate!, eventName: eventTextField.text!)
-            // TODO: Geef aan dat de datum is opgeslagen... Segue ofzo.
+            databaseQuerysInstance.writeEventToDatabase(userGroup: User.shared.group!, dateSetForEvent: formatter.string(from: strDate), eventName: eventTextField.text!)
+            // TODO: zorg dat na het oplaan evenementen wel ok blijven
             print("The date is saved.")
             dismiss(animated: true, completion: nil)
-            
         } else {
-            // TODO: Geef hier userwarning.
+            // TODO: Geef hier user warning.
             print("textField is leeg")
         }
-        
     }
     
     override func viewDidLoad() {
@@ -57,22 +57,8 @@ class newEventViewController: UIViewController {
         self.hideKeyboardWhenTappedAround()
     }
 
-
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
