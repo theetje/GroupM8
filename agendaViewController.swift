@@ -75,6 +75,10 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         // Laat de tableView weten dat dit zijn bron van info is.
         tableView.dataSource = self
         tableView.delegate = self
+        
+        // Connect het nib (xib) bestand.
+        let nib = UINib(nibName: "calendarTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "eventCell")
     }
     
     // Functions:
@@ -111,10 +115,11 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         
         let bool = events.contains { event in
             formatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZ"
-            let eventDate = formatter.date(from: event.date!)
             
+            // Bij het toevoegen van een agenda event is eventDate nul vang hem dus op!
+            guard let eventDate = formatter.date(from: event.date!) else { return false }
             formatter.dateFormat = "yyyy MM dd"
-            return formatter.string(from: eventDate!) == formatter.string(from: cellState.date)
+            return formatter.string(from: eventDate) == formatter.string(from: cellState.date)
         }
         
         if bool == true {
@@ -131,11 +136,13 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         var eventsOnDate = [Event]()
         for event in events {
             formatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZ"
-            let eventDate = formatter.date(from: event.date!)
+            
+            // Bij het toevoegen van een agenda event is eventDate nul vang hem dus op!
+            guard let eventDate = formatter.date(from: event.date!) else { return eventsOnDate }
             
             formatter.dateFormat = "yyyy MM dd"
             
-            if formatter.string(from: eventDate!) == formatter.string(from: cellState.date) {
+            if formatter.string(from: eventDate) == formatter.string(from: cellState.date) {
                 eventsOnDate.append(event)
             }
         }
@@ -147,10 +154,12 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         // Kijk of er events zijn geladen en of deze of de cellState.date plaatsvinden.
         cell.dotSelecter.isHidden = !events.contains { event in
             formatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZ"
-            let eventDate = formatter.date(from: event.date!)
+            
+            // Bij het toevoegen van een agenda event is eventDate nul vang hem dus op!
+            guard let eventDate = formatter.date(from: event.date!) else { return false }
             
             formatter.dateFormat = "yyyy MM dd"
-            return formatter.string(from: eventDate!) == formatter.string(from: cellState.date)
+            return formatter.string(from: eventDate) == formatter.string(from: cellState.date)
         }
     }
     
@@ -199,18 +208,20 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         monthLable.text = formatter.string(from: date)
     }
     
+                            /* --- Functions nodig voor CollectionView --- */
     // Functions (nodig voor class CollectionView):
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // collectionView hoord bij protocol
         return 1
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // collectrionViewCell hoord bij protocol
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath as IndexPath)
         return cell
     }
     
-    // Functions (nodig voor cl§ass TableView):
+                            /* --- Functions nodig voor TableView --- */
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -222,16 +233,21 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! calendarTableViewCell
         
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZ"
+        let formattedTime = formatter.date(from: eventData[indexPath.row].date!)
+        formatter.dateFormat = "HH:mm"
+        cell.eventTimeLabel?.text = formatter.string(from: formattedTime!)
+        cell.eventNameLabel?.text = eventData[indexPath.row].eventName
+        cell.eventDescriptionLabel.text = eventData[indexPath.row].eventDesctiption
         
-        let eventName = eventData[indexPath.row].eventName
-        cell.textLabel?.text = eventName
         
         return cell
     }
 }
 
+                            /* --- De functies hieronder zijn van de calendar package --- */
 // Extensions van de ViewController:
 extension agendaViewController: JTAppleCalendarViewDelegate {
     // Extentie voor de delegate
@@ -270,9 +286,9 @@ extension agendaViewController: JTAppleCalendarViewDelegate {
         return header
     }
     
-    func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize? {
-        return MonthSize(defaultSize: 50)
-    }
+//    func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize? {
+//        return MonthSize(defaultSize: 50)
+//    }
 }
 
 extension agendaViewController: JTAppleCalendarViewDataSource {

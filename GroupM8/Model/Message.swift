@@ -13,20 +13,4 @@ struct Message {
     var MessageText: String?
     var MessageWriter: String?
     var TimeStamp: String?
-    
-//    // Sorteer de berichten a.d.h.v. de datum.
-//    func sortMessagesByDate() {
-//        var dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZ" // yyyy-MM-dd"
-//        
-//        for item in tempArray {
-//            let tempItem = dateFormatter.date(from: item.TimeStamp!)
-//            item.TimeStamp = tempItem
-//        }
-//        
-//        var ready = convertedArray.sorted(by: { $0.compare($1) == .orderedDescending })
-//        
-//        print(ready)
-//        return ready
-//    }
 }

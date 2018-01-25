@@ -28,6 +28,7 @@ class newEventViewController: UIViewController {
     // Voor de datepicker is een Outlet en een action nodig, action meet verandering
     @IBOutlet weak var datePickerOutlet: UIDatePicker!
     @IBOutlet weak var eventTextField: UITextField!
+    @IBOutlet weak var eventDesctiption: UITextField!
     
     // Actions:
     @IBAction func cancelNewEvent(_ sender: Any) {
@@ -41,7 +42,7 @@ class newEventViewController: UIViewController {
     
     @IBAction func saveTheDate(_ sender: Any) {
         if eventTextField.text != "" {
-            databaseQuerysInstance.writeEventToDatabase(userGroup: User.shared.group!, dateSetForEvent: formatter.string(from: strDate), eventName: eventTextField.text!)
+            databaseQuerysInstance.writeEventToDatabase(userGroup: User.shared.group!, dateSetForEvent: formatter.string(from: strDate), eventName: eventTextField.text!, eventDescription: eventDesctiption.text!)
             // TODO: zorg dat na het oplaan evenementen wel ok blijven
             print("The date is saved.")
             dismiss(animated: true, completion: nil)

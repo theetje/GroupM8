@@ -48,6 +48,7 @@ class DatabaseQuerys {
         }
     }
     
+    // Haal evenementen op voor de calender.
     func getCalendarEvents(userGroup: String, completion: @escaping ([Event]) -> ()) {
         ref = Database.database().reference()
         var events = [Event]()
@@ -57,10 +58,13 @@ class DatabaseQuerys {
             if let calandarEvents = snapshot.value as? [String:AnyObject] {
                 // Verwerk de data
                 for calandarEvent in (calandarEvents.values) {
+                    let eventID = calandarEvent["EventID"] as? String ?? ""
                     let date = calandarEvent["Date"] as? String ?? ""
                     let eventName = calandarEvent["EventName"] as? String ?? ""
+                    let eventDesctiption = calandarEvent["eventDesctiption"] as? String ?? ""
+                    let partisipents = calandarEvent["partisipents"] as? Int ?? 1
                     
-                    let event = Event(date: date, eventName: eventName)
+                    let event = Event(date: date, eventName: eventName, eventDesctiption: eventDesctiption, partisipents: partisipents, eventID: eventID)
                     events.append(event)
                 }
             } else {
@@ -73,6 +77,7 @@ class DatabaseQuerys {
         }
     }
     
+    // Haal de berichten op.
     func getMessages(userGroup: String, completion: @escaping ([Message]) -> ()) {
         ref = Database.database().reference()
         var messages = [Message]()
@@ -99,16 +104,21 @@ class DatabaseQuerys {
     }
     
     // Schrijf een nieuw evenement naar de database.
-    func writeEventToDatabase(userGroup: String, dateSetForEvent: String, eventName: String) {
+    func writeEventToDatabase(userGroup: String, dateSetForEvent: String, eventName: String, eventDescription: String) {
         // Initieer ref naar de datbase.
         ref = Database.database().reference()
-        let eventID = ref?.child("Group").child(userGroup).child("Agenda").childByAutoId()
-        
-        eventID?.child("Date").setValue(dateSetForEvent)
-        eventID?.child("EventName").setValue(eventName)
+        let eventRoot = ref?.child("Group").child(userGroup).child("Agenda").childByAutoId()
+        let eventID = eventName.hashValue
+        let userID = Auth.auth().currentUser?.uid
+        eventRoot?.child("EventID").setValue(eventID)
+        eventRoot?.child("Date").setValue(dateSetForEvent)
+        eventRoot?.child("EventName").setValue(eventName)
+        eventRoot?.child("eventDesctiption").setValue(eventDescription)
+        eventRoot?.child("partisipents").setValue("1")
+        eventRoot?.child("Deelnemers").child(userID!)
     }
     
-    // Schrijf een nieuw evenement naar de database.
+    // Schrijf een nieuwe gebruiker naar de database.
     func writeNewUserToDatabase(userGroup: String, userMail: String, chatName: String) {
         // Initieer ref naar de datbase.
         let userID = Auth.auth().currentUser?.uid
@@ -122,6 +132,7 @@ class DatabaseQuerys {
         newUserRef?.child("ChatName").setValue(chatName)
     }
     
+    // Schrijf een bericht op het berichtenbord.
     func writeMessageToDatabase(userGroup: String, userChatName: String, message: String) {
         // Initieer ref naar de datbase.
         ref = Database.database().reference()
@@ -134,4 +145,5 @@ class DatabaseQuerys {
         newMessageboardRef?.child("MessageWriter").setValue(userChatName)
         newMessageboardRef?.child("TimeStamp").setValue(formatedTime)
     }
+    
 }

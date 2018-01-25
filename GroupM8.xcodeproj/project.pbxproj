@@ -27,6 +27,9 @@
 		E9A29E412003843F0048FDA5 /* GroupM8UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A29E402003843F0048FDA5 /* GroupM8UITests.swift */; };
 		E9BE2F0E200E610000953D88 /* chatboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F0D200E610000953D88 /* chatboxViewController.swift */; };
 		E9BE2F10200E611200953D88 /* agendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F0F200E611200953D88 /* agendaViewController.swift */; };
+		E9CBD8BE201A3D7F00068481 /* instellingenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CBD8BD201A3D7F00068481 /* instellingenViewController.swift */; };
+		E9CBD8C1201A4B1300068481 /* calendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CBD8BF201A4B1300068481 /* calendarTableViewCell.swift */; };
+		E9CBD8C2201A4B1300068481 /* calendarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9CBD8C0201A4B1300068481 /* calendarTableViewCell.xib */; };
 		E9DE9ADE2017676F0088471A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE9ADD2017676F0088471A /* Message.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +81,9 @@
 		E9A29E422003843F0048FDA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9BE2F0D200E610000953D88 /* chatboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatboxViewController.swift; sourceTree = "<group>"; };
 		E9BE2F0F200E611200953D88 /* agendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = agendaViewController.swift; sourceTree = "<group>"; };
+		E9CBD8BD201A3D7F00068481 /* instellingenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = instellingenViewController.swift; path = GroupM8/Controller/instellingenViewController.swift; sourceTree = "<group>"; };
+		E9CBD8BF201A4B1300068481 /* calendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calendarTableViewCell.swift; sourceTree = "<group>"; };
+		E9CBD8C0201A4B1300068481 /* calendarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = calendarTableViewCell.xib; sourceTree = "<group>"; };
 		E9DE9ADD2017676F0088471A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Message.swift; path = GroupM8/Model/Message.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,6 +133,8 @@
 		E9032FCB20079C55006483FA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E9CBD8BF201A4B1300068481 /* calendarTableViewCell.swift */,
+				E9CBD8C0201A4B1300068481 /* calendarTableViewCell.xib */,
 				E93C792E2010C99400A718EB /* CalendarHeader.swift */,
 				E918F742200F9EE0007ACBAE /* calendarCollectionViewCell.swift */,
 			);
@@ -136,6 +144,7 @@
 		E9032FD52007A03D006483FA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E9CBD8BD201A3D7F00068481 /* instellingenViewController.swift */,
 				E944ACC720122AB600F502D3 /* newEventViewController.swift */,
 				E9BE2F0D200E610000953D88 /* chatboxViewController.swift */,
 				E9BE2F0F200E611200953D88 /* agendaViewController.swift */,
@@ -357,6 +366,7 @@
 				E9A29E2B2003843E0048FDA5 /* LaunchScreen.storyboard in Resources */,
 				E97916D3200CE3BD00750B10 /* GoogleService-Info.plist in Resources */,
 				E9A29E282003843E0048FDA5 /* Assets.xcassets in Resources */,
+				E9CBD8C2201A4B1300068481 /* calendarTableViewCell.xib in Resources */,
 				E9A29E262003843E0048FDA5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -479,10 +489,12 @@
 				E98C18632014E08900DD476F /* User.swift in Sources */,
 				E944ACC820122AB600F502D3 /* newEventViewController.swift in Sources */,
 				E98C18602014DEC600DD476F /* databaseQuerys.swift in Sources */,
+				E9CBD8C1201A4B1300068481 /* calendarTableViewCell.swift in Sources */,
 				E92C2AC2200CEE0C00580F31 /* registerUserViewController.swift in Sources */,
 				E9BE2F0E200E610000953D88 /* chatboxViewController.swift in Sources */,
 				E93C792F2010C99400A718EB /* CalendarHeader.swift in Sources */,
 				E9BE2F10200E611200953D88 /* agendaViewController.swift in Sources */,
+				E9CBD8BE201A3D7F00068481 /* instellingenViewController.swift in Sources */,
 				E9032FE32007BBFF006483FA /* backTableViewController.swift in Sources */,
 				E9032FD72007A0C8006483FA /* loginViewController.swift in Sources */,
 				E918F743200F9EE0007ACBAE /* calendarCollectionViewCell.swift in Sources */,
