@@ -15,21 +15,35 @@ class calendarTableViewCell: UITableViewCell {
     @IBOutlet weak var eventTimeLabel: UILabel!
     @IBOutlet weak var counterLabel: UILabel!
     @IBOutlet weak var dateID: UILabel!
+    @IBOutlet weak var Button: UIButton!
+    @IBOutlet weak var contendView: UIView!
     
+    let dataBaseQueryInstence = DatabaseQuerys()
+    
+    // joind eventButton.
     @IBAction func goToEvent(_ sender: Any) {
-        print("Event id: \(dateID.text!)")
-        
+        self.dataBaseQueryInstence.joinEvent(userGroup: User.shared.group!, eventID: dateID.text!)
+        Button.bounce()
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-//        dateID.isHidden = true
-        // Initialization code
+        dateID.isHidden = true
+        
+        // Geef extra waarde voor de layout.
+        contendView.layer.cornerRadius = 5
+        Button.layer.cornerRadius = 5
+        
+        contendView.layer.shadowColor = UIColor.black.cgColor
+        contendView.layer.shadowOpacity = 1
+        contendView.layer.shadowOffset = CGSize.zero
+        contendView.layer.shadowRadius = 5
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
     }
     
 }

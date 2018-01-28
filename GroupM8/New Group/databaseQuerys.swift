@@ -58,14 +58,14 @@ class DatabaseQuerys {
             if let calandarEvents = snapshot.value as? [String:AnyObject] {
                 // Verwerk de data
                 for calandarEvent in (calandarEvents.values) {
-                    let eventID = calandarEvent["EventID"] as? String ?? "no id" 
-                    print(eventID)
+                    let eventKey = calandarEvent["EventKey"] as? String ?? "no id"
+                    print(eventKey)
                     let date = calandarEvent["Date"] as? String ?? ""
                     let eventName = calandarEvent["EventName"] as? String ?? ""
                     let eventDesctiption = calandarEvent["eventDesctiption"] as? String ?? ""
                     let partisipents = calandarEvent["partisipents"] as? Int ?? 1
                     
-                    let event = Event(date: date, eventName: eventName, eventDesctiption: eventDesctiption, partisipents: partisipents, eventID: eventID)
+                    let event = Event(date: date, eventName: eventName, eventDesctiption: eventDesctiption, partisipents: partisipents, eventKey: eventKey)
                     events.append(event)
                 }
             } else {
@@ -97,6 +97,8 @@ class DatabaseQuerys {
                 print("Er zijn geen berichten opgehaald.")
             }
             completion(messages)
+            
+            // Maak berichten leeg zodat ze niet dubbel verschijenen.
             messages.removeAll()
         }) {(error) in
             // Error handling
@@ -104,14 +106,24 @@ class DatabaseQuerys {
         }
     }
     
+    func getAttendeesEvent(userGroup: String, eventID: String, completion: @escaping (UInt) -> ()){
+        ref = Database.database().reference()
+        
+        _ = ref?.child("Group").child(userGroup).child("Attendees").child(eventID).observe(.value, with: { (snapshot) in
+            let attendees = snapshot.childrenCount
+            completion(attendees)
+        })
+    }
+    
     // Schrijf een nieuw evenement naar de database.
     func writeEventToDatabase(userGroup: String, dateSetForEvent: String, eventName: String, eventDescription: String) {
         // Initieer ref naar de datbase.
         ref = Database.database().reference()
         let eventRoot = ref?.child("Group").child(userGroup).child("Agenda").childByAutoId()
-        let eventID = eventName.hashValue
+        let eventKey = eventRoot?.key
         let userID = Auth.auth().currentUser?.uid
-        eventRoot?.child("EventID").setValue(eventID)
+        
+        eventRoot?.child("EventKey").setValue(eventKey)
         eventRoot?.child("Date").setValue(dateSetForEvent)
         eventRoot?.child("EventName").setValue(eventName)
         eventRoot?.child("eventDesctiption").setValue(eventDescription)
@@ -119,12 +131,22 @@ class DatabaseQuerys {
         eventRoot?.child("Deelnemers").child(userID!)
     }
     
+    // Zet een gebruiker op de lijst met aanwezigen.
+    func joinEvent(userGroup: String, eventID: String) {
+        // Initieer ref naar database.
+        ref = Database.database().reference()
+        let eventRoot = ref?.child("Group").child(userGroup).child("Attendees").child(eventID)
+        let userID = Auth.auth().currentUser?.uid
+        
+        eventRoot?.child(userID!).setValue("Y")
+    }
+    
     // Schrijf een nieuwe gebruiker naar de database.
     func writeNewUserToDatabase(userGroup: String, userMail: String, chatName: String) {
         // Initieer ref naar de datbase.
         let userID = Auth.auth().currentUser?.uid
         
-        // Maak een referenctie naar de database en een eventID
+        // Maak een referenctie naar de database en een userID
         ref = Database.database().reference()
         let newUserRef = ref?.child("Users").child(userID!)
         

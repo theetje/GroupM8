@@ -56,6 +56,9 @@ class newEventViewController: UIViewController {
         super.viewDidLoad()
         // Verwijder toetsenbord bij tab
         self.hideKeyboardWhenTappedAround()
+        
+        datePickerOutlet.setValue(UIColor.white, forKey: "textColor")
+        // datePickerOutlet.performSelector("setHighlightsToday:", withObject:DesignHelper.getOffWhiteColor())
     }
 
     override func didReceiveMemoryWarning() {

@@ -14,6 +14,5 @@ struct Event {
     var eventName: String?
     var eventDesctiption: String?
     var partisipents: Int?
-    var eventID: String?
+    var eventKey: String?
 }
-

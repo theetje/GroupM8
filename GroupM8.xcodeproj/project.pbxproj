@@ -13,6 +13,8 @@
 		E9032FE32007BBFF006483FA /* backTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9032FE22007BBFF006483FA /* backTableViewController.swift */; };
 		E918F743200F9EE0007ACBAE /* calendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E918F742200F9EE0007ACBAE /* calendarCollectionViewCell.swift */; };
 		E92C2AC2200CEE0C00580F31 /* registerUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C2AC1200CEE0C00580F31 /* registerUserViewController.swift */; };
+		E93A804A201E219100FEC430 /* messageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A8048201E219100FEC430 /* messageTableViewCell.swift */; };
+		E93A804B201E219100FEC430 /* messageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93A8049201E219100FEC430 /* messageTableViewCell.xib */; };
 		E93C792F2010C99400A718EB /* CalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93C792E2010C99400A718EB /* CalendarHeader.swift */; };
 		E944ACC820122AB600F502D3 /* newEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E944ACC720122AB600F502D3 /* newEventViewController.swift */; };
 		E97916D3200CE3BD00750B10 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E97916D2200CE3BD00750B10 /* GoogleService-Info.plist */; };
@@ -61,6 +63,8 @@
 		E9032FE22007BBFF006483FA /* backTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = backTableViewController.swift; sourceTree = "<group>"; };
 		E918F742200F9EE0007ACBAE /* calendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		E92C2AC1200CEE0C00580F31 /* registerUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerUserViewController.swift; sourceTree = "<group>"; };
+		E93A8048201E219100FEC430 /* messageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = messageTableViewCell.swift; sourceTree = "<group>"; };
+		E93A8049201E219100FEC430 /* messageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = messageTableViewCell.xib; sourceTree = "<group>"; };
 		E93C792E2010C99400A718EB /* CalendarHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeader.swift; sourceTree = "<group>"; };
 		E944ACC720122AB600F502D3 /* newEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newEventViewController.swift; sourceTree = "<group>"; };
 		E97916D2200CE3BD00750B10 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 		E9032FCB20079C55006483FA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E93A8048201E219100FEC430 /* messageTableViewCell.swift */,
+				E93A8049201E219100FEC430 /* messageTableViewCell.xib */,
 				E9CBD8BF201A4B1300068481 /* calendarTableViewCell.swift */,
 				E9CBD8C0201A4B1300068481 /* calendarTableViewCell.xib */,
 				E93C792E2010C99400A718EB /* CalendarHeader.swift */,
@@ -366,6 +372,7 @@
 				E9A29E2B2003843E0048FDA5 /* LaunchScreen.storyboard in Resources */,
 				E97916D3200CE3BD00750B10 /* GoogleService-Info.plist in Resources */,
 				E9A29E282003843E0048FDA5 /* Assets.xcassets in Resources */,
+				E93A804B201E219100FEC430 /* messageTableViewCell.xib in Resources */,
 				E9CBD8C2201A4B1300068481 /* calendarTableViewCell.xib in Resources */,
 				E9A29E262003843E0048FDA5 /* Main.storyboard in Resources */,
 			);
@@ -498,6 +505,7 @@
 				E9032FE32007BBFF006483FA /* backTableViewController.swift in Sources */,
 				E9032FD72007A0C8006483FA /* loginViewController.swift in Sources */,
 				E918F743200F9EE0007ACBAE /* calendarCollectionViewCell.swift in Sources */,
+				E93A804A201E219100FEC430 /* messageTableViewCell.swift in Sources */,
 				E9A29E212003843E0048FDA5 /* AppDelegate.swift in Sources */,
 				E9032FDF2007B3BA006483FA /* SWRevealViewController.m in Sources */,
 				E98C18652014E16100DD476F /* Event.swift in Sources */,

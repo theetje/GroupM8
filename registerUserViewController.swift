@@ -19,6 +19,7 @@ class registerUserViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var wachtwoordTextFieldOpnieuw: UITextField!
     @IBOutlet weak var groupIDTextField: UITextField!
     @IBOutlet weak var chatNameTextField: UITextField!
+    
     // Actions:
     @IBAction func registerUser(_ sender: Any) {
         // Kijk of de wachtwoord velden het zelfde zijn en niet leeg.
@@ -52,7 +53,6 @@ class registerUserViewController: UIViewController, UITextFieldDelegate {
                 // Wachtwoorden is niet het zelfde.
                 print("--- Password field are not the same ---")
             }
-
         } else {
             // Wachtwoord veld of text is leeg.
             print("--- Password field is empty ---")
@@ -69,6 +69,5 @@ class registerUserViewController: UIViewController, UITextFieldDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

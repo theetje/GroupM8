@@ -39,6 +39,10 @@ class chatboxViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Connect het nib (xib) bestand.
+        let nib = UINib(nibName: "messageTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "messageCell")
+        
         // Programmatic link for tableView
         tableView.dataSource = self
         tableView.delegate = self
@@ -79,7 +83,7 @@ class chatboxViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! messageTableViewCell
         
         // Sorteer de berichten van oud naar nieuw en keer om.
         MessageArray.sort(by: { $0.TimeStamp?.compare($1.TimeStamp!) == .orderedAscending })
@@ -87,8 +91,10 @@ class chatboxViewController: UIViewController, UITableViewDataSource, UITableVie
         
         // Zet berichten in de cell.
         if let messageText = MessageArray[indexPath.row].MessageText {
-            cell.textLabel?.text = messageText
+            cell.messageContentLabel?.text = messageText
         }
+        
+        
         
         if let messageWriter = MessageArray[indexPath.row].MessageWriter {
             cell.detailTextLabel?.text = messageWriter

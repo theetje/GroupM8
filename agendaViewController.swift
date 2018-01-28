@@ -39,6 +39,10 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     
     // Overrides:
     override func viewDidLoad() {
+        // Haald de shadow onderaan de navigatie balk
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        
         super.viewDidLoad()
         // setup van de cell waar 1 dag zich in bevind.
         setupCalandarView()
@@ -49,7 +53,7 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         self.dataBaseQueryInstence.findUserInfo() { userInfo in
             self.user = userInfo
             // Haal de evenementen op uit de databse.
-            self.dataBaseQueryInstence.getCalendarEvents(userGroup: (self.user?.group)!, completion: { dataBaseData in
+            self.dataBaseQueryInstence.getCalendarEvents(userGroup: User.shared.group!, completion: { dataBaseData in
                 
                 self.events = dataBaseData
                 
@@ -59,12 +63,12 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
             })
         }        
 
-        
         // Scroll naar de huidige datum, zonder animatie
         calenderView.scrollToDate(Date(), animateScroll: false )
         
         calenderView.visibleDates { dateSegment in
             self.setupViewsOfCalendar(from: dateSegment)
+            
         }
         
         // De functies voor het hamburger menu.
@@ -172,14 +176,14 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         let todaysDateString = formatter.string(from: Date())
         let monthDateString = formatter.string(from: cellState.date)
         if todaysDateString == monthDateString {
-            cell.dateLable.textColor = UIColor.blue
+            cell.dateLable.textColor = UIColor.white
         }
     }
     
     // Functie die de kleur veranderd bij selectie de selectie.
     func handleCellTextColor(cell: calendarCollectionViewCell, cellState: CellState) {
         if cellState.isSelected {
-            cell.dateLable.textColor = UIColor.darkGray
+            cell.dateLable.textColor = UIColor.white
         } else {
             if cellState.dateBelongsTo == .thisMonth {
                 cell.dateLable.textColor = UIColor.black
@@ -235,20 +239,24 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! calendarTableViewCell
         
+        // Disable cell selection.
+        cell.selectionStyle = .none
+        
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZ"
         let formattedTime = formatter.date(from: eventData[indexPath.row].date!)
         formatter.dateFormat = "HH:mm"
         cell.eventTimeLabel?.text = formatter.string(from: formattedTime!)
         cell.eventNameLabel?.text = eventData[indexPath.row].eventName
         cell.eventDescriptionLabel.text = eventData[indexPath.row].eventDesctiption
-        cell.dateID?.text = eventData[indexPath.row].eventID
-//        let stringAmount = eventData[indexPath.row].partisipents as String
-//        cell.counterLabel?.text = stringAmount
-//        
+        cell.dateID?.text = String(eventData[indexPath.row].eventKey!)
+        // Laat zien hoeveel mensen zich hebben aangemeld voor een evenement.
+        self.dataBaseQueryInstence.getAttendeesEvent(userGroup: User.shared.group!, eventID: eventData[indexPath.row].eventKey!, completion: { attendees in
+            cell.counterLabel.text = String(attendees)
+        })
+        
         return cell
     }
 }
-
                             /* --- De functies hieronder zijn van de calendar package --- */
 // Extensions van de ViewController:
 extension agendaViewController: JTAppleCalendarViewDelegate {
@@ -263,9 +271,9 @@ extension agendaViewController: JTAppleCalendarViewDelegate {
         return cell
     }
     
+    // Functies die bij selectie gebruikt worden.
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         // Laat de geselecteerde cell zien
-        // Functies die bij selectie gebruikt worden.
         configureCell(cell: cell, cellState: cellState)
         
         // Haal Evenementen op van de geselecteerde dag.
@@ -273,24 +281,26 @@ extension agendaViewController: JTAppleCalendarViewDelegate {
         cell?.bounce()
     }
     
+    // functies die bij deselectie gebruikt worden.
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        // functies die bij deselectie gebruikt worden.
         configureCell(cell: cell, cellState: cellState)
     }
     
+    // functie gaat over segment waar overheen gescroled wordt.
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
-        // functie gaat over segment waar overheen gescroled wordt.
         setupViewsOfCalendar(from: visibleDates)
     }
     
+    // Header zijn de dagen van de week.
     func calendar(_ calendar: JTAppleCalendarView, headerViewForDateRange range: (start: Date, end: Date), at indexPath: IndexPath) -> JTAppleCollectionReusableView {
         let header = calendar.dequeueReusableJTAppleSupplementaryView(withReuseIdentifier: "header", for: indexPath) as! CalendarHeader
         return header
     }
     
-//    func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize? {
-//        return MonthSize(defaultSize: 50)
-//    }
+    // Is nodig voor het goed laten zien van de dagen van de week.
+    func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize? {
+        return MonthSize(defaultSize: 50)
+    }
 }
 
 extension agendaViewController: JTAppleCalendarViewDataSource {
@@ -324,7 +334,6 @@ extension UIView {
             options: UIViewAnimationOptions.beginFromCurrentState,
             animations: {
                 self.transform = CGAffineTransform(scaleX: 1, y: 1)
-        }
-        )
+        })
     }
 }
