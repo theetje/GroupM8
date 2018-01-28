@@ -123,7 +123,7 @@
                         </variation>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="0.08791496604681015" green="0.50051683187484741" blue="0.94667893648147583" alpha="0.19665025680000001" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="7eZ-Q3-Jka" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="UK3-GV-O6u"/>
                     <constraint firstItem="7eZ-Q3-Jka" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="XUM-Gc-gyQ"/>

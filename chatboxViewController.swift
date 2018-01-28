@@ -13,9 +13,16 @@ class chatboxViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // Maak array die berichten bevat.
     var MessageArray = [Message]()
-    
     // Database clas instance
     let databaseQuerysInstance = DatabaseQuerys()
+    // Date formatter object.
+    let formatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = Calendar.current.timeZone
+        dateFormatter.locale = Calendar.current.locale
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dateFormatter
+    }()
     
     // Outlets:
     @IBOutlet weak var tableView: UITableView!
@@ -84,21 +91,31 @@ class chatboxViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! messageTableViewCell
+
+        // Disable cell selection.
+        cell.selectionStyle = .none
         
         // Sorteer de berichten van oud naar nieuw en keer om.
         MessageArray.sort(by: { $0.TimeStamp?.compare($1.TimeStamp!) == .orderedAscending })
         MessageArray.reverse()
         
+        print(MessageArray)
         // Zet berichten in de cell.
-        if let messageText = MessageArray[indexPath.row].MessageText {
-            cell.messageContentLabel?.text = messageText
-        }
+//        if let messageText = MessageArray[indexPath.row].MessageText {
+//            cell.messageContentLabel?.text = messageText
+//        }
+//
+//        if let timestamp = MessageArray[indexPath.row].TimeStamp {
+//            cell.messageTimestempLabel?.text = timestamp
+//        }
+//
+//        if let writer = MessageArray[indexPath.row].MessageWriter {
+//            cell.messageWriterLabel?.text = writer
+//        }
         
-        
-        
-        if let messageWriter = MessageArray[indexPath.row].MessageWriter {
-            cell.detailTextLabel?.text = messageWriter
-        }
+        cell.messageContentLabel?.text = MessageArray[indexPath.row].MessageText!
+        cell.messageTimestempLabel?.text = MessageArray[indexPath.row].TimeStamp!
+        cell.messageWriterLabel?.text = MessageArray[indexPath.row].MessageWriter!
         
         return cell
     }

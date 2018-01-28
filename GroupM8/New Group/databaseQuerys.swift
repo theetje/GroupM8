@@ -59,7 +59,6 @@ class DatabaseQuerys {
                 // Verwerk de data
                 for calandarEvent in (calandarEvents.values) {
                     let eventKey = calandarEvent["EventKey"] as? String ?? "no id"
-                    print(eventKey)
                     let date = calandarEvent["Date"] as? String ?? ""
                     let eventName = calandarEvent["EventName"] as? String ?? ""
                     let eventDesctiption = calandarEvent["eventDesctiption"] as? String ?? ""
