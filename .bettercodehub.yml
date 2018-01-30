@@ -1,1 +1,6 @@
 exclude:
+# - /Pods/.*
+- .*/SWRevealViewController\.h
+- .*/SWRevealViewController\.m
+- .*/GroupM8-Bridging-Header\.h
+# - .*/DefaultType\.DefaultUnit
