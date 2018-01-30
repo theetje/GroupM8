@@ -127,6 +127,7 @@ class agendaViewController: UIViewController, UITableViewDataSource, UITableView
             tableView.reloadData()
         } else {
             eventData = [Event]()
+            tableView.reloadData()
         }
     }
     
@@ -260,7 +261,7 @@ extension agendaViewController: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         // Laat de geselecteerde cell zien
         configureCell(cell: cell, cellState: cellState)
-        
+
         // Haal Evenementen op van de geselecteerde dag.
         configureTableView(cell: cell, cellState: cellState)
         cell?.bounce()
@@ -311,21 +312,6 @@ extension agendaViewController: JTAppleCalendarViewDataSource {
         
         // Functies die nodig zijn sbij creatie van de cell.
         configureCell(cell: cell, cellState: cellState)
-    }
-}
-
-extension UIView {
-    func bounce() {
-        // Animatie van de cell
-        self.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-        UIView.animate(
-            withDuration: 0.5,
-            delay: 0, usingSpringWithDamping: 0.3,
-            initialSpringVelocity: 0.1,
-            options: UIViewAnimationOptions.beginFromCurrentState,
-            animations: {
-                self.transform = CGAffineTransform(scaleX: 1, y: 1)
-        })
     }
 }
 

@@ -74,6 +74,9 @@ class DatabaseQuerys {
                 print("Events zijn niet opgehaald.")
             }
             completion(events)
+            
+            // Maak events leeg zodat ze niet dubbel verschijenen.
+            events.removeAll()
         }) { (error) in
             // Error handeling.
             print(error.localizedDescription)
@@ -84,6 +87,7 @@ class DatabaseQuerys {
     func getMessages(userGroup: String, completion: @escaping ([Message]) -> ()) {
         ref = Database.database().reference()
         var messages = [Message]()
+        
         ref?.child("Group").child(userGroup).child("Messageboard").observe(.value, with: { (snapshot) in
             if let message = snapshot.value as? [String: AnyObject] {
                 // verwerk data

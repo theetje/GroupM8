@@ -12,6 +12,7 @@
 		E9032FDF2007B3BA006483FA /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9032FDD2007B3B8006483FA /* SWRevealViewController.m */; };
 		E9032FE32007BBFF006483FA /* backTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9032FE22007BBFF006483FA /* backTableViewController.swift */; };
 		E918F743200F9EE0007ACBAE /* calendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E918F742200F9EE0007ACBAE /* calendarCollectionViewCell.swift */; };
+		E91A26F42020C43200BA49D6 /* extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A26F32020C43200BA49D6 /* extentions.swift */; };
 		E92C2AC2200CEE0C00580F31 /* registerUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C2AC1200CEE0C00580F31 /* registerUserViewController.swift */; };
 		E93A804A201E219100FEC430 /* messageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A8048201E219100FEC430 /* messageTableViewCell.swift */; };
 		E93A804B201E219100FEC430 /* messageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93A8049201E219100FEC430 /* messageTableViewCell.xib */; };
@@ -62,6 +63,7 @@
 		E9032FDE2007B3BA006483FA /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		E9032FE22007BBFF006483FA /* backTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = backTableViewController.swift; sourceTree = "<group>"; };
 		E918F742200F9EE0007ACBAE /* calendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		E91A26F32020C43200BA49D6 /* extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = extentions.swift; path = GroupM8/Classes/extentions.swift; sourceTree = SOURCE_ROOT; };
 		E92C2AC1200CEE0C00580F31 /* registerUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerUserViewController.swift; sourceTree = "<group>"; };
 		E93A8048201E219100FEC430 /* messageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = messageTableViewCell.swift; sourceTree = "<group>"; };
 		E93A8049201E219100FEC430 /* messageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = messageTableViewCell.xib; sourceTree = "<group>"; };
@@ -191,12 +193,13 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		E98C18612014DECF00DD476F /* Classes */ = {
+		E98C18612014DECF00DD476F /* Classes and Extentions */ = {
 			isa = PBXGroup;
 			children = (
 				E98C185F2014DEC600DD476F /* databaseQuerys.swift */,
+				E91A26F32020C43200BA49D6 /* extentions.swift */,
 			);
-			name = Classes;
+			name = "Classes and Extentions";
 			path = "New Group";
 			sourceTree = "<group>";
 		};
@@ -226,7 +229,7 @@
 		E9A29E1F2003843E0048FDA5 /* GroupM8 */ = {
 			isa = PBXGroup;
 			children = (
-				E98C18612014DECF00DD476F /* Classes */,
+				E98C18612014DECF00DD476F /* Classes and Extentions */,
 				E9032FD52007A03D006483FA /* Controller */,
 				E9032FCB20079C55006483FA /* View */,
 				E930FA5520111186001ECF89 /* delegate */,
@@ -420,18 +423,25 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-GroupM8/Pods-GroupM8-resources.sh",
-				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle,
-				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseFacebookAuthUI.bundle,
-				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseGoogleAuthUI.bundle,
-				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebasePhoneAuthUI.bundle,
-				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseTwitterAuthUI.bundle,
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseFacebookAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseGoogleAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebasePhoneAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseTwitterAuthUI.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseFacebookAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseGoogleAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebasePhoneAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseTwitterAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterShareExtensionUIResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -455,6 +465,8 @@
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
@@ -474,6 +486,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
@@ -505,6 +519,7 @@
 				E9032FE32007BBFF006483FA /* backTableViewController.swift in Sources */,
 				E9032FD72007A0C8006483FA /* loginViewController.swift in Sources */,
 				E918F743200F9EE0007ACBAE /* calendarCollectionViewCell.swift in Sources */,
+				E91A26F42020C43200BA49D6 /* extentions.swift in Sources */,
 				E93A804A201E219100FEC430 /* messageTableViewCell.swift in Sources */,
 				E9A29E212003843E0048FDA5 /* AppDelegate.swift in Sources */,
 				E9032FDF2007B3BA006483FA /* SWRevealViewController.m in Sources */,

@@ -60,7 +60,6 @@ class loginViewController: UIViewController {
         // Haald de shadow onderaan de navigatie balk
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,23 +67,3 @@ class loginViewController: UIViewController {
     }
 }
 
-extension UIViewController {
-    // User alert fuctie om gebruikers te vertellen wat ze niet goed doen.
-    func showAlert(title: String, message: String) -> Void {
-        let alert = UIAlertController(title: "\(title)", message: "\(message)", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    // Functie die Keyboard effectief weghaald.
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    // Vervolg functie die in ViewDidLoad gebruikt wordt.
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-}
