@@ -1,6 +1,7 @@
-component_depth: 2
+component_depth: 3
 languages:
 - swift
+- objectivec
 
 - name: objectivec
   production:
@@ -8,3 +9,4 @@ languages:
         - .*/SWRevealViewController\.h
         - .*/SWRevealViewController\.m
         - .*/GroupM8-Bridging-Header\.h
+        - /Pods/.*
