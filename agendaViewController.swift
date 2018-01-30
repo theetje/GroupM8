@@ -38,11 +38,7 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     }()
     
     // Overrides:
-    override func viewDidLoad() {
-        // Haald de shadow onderaan de navigatie balk
-        UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        
+    override func viewDidLoad() {        
         super.viewDidLoad()
         // setup van de cell waar 1 dag zich in bevind.
         setupCalandarView()

@@ -9,6 +9,5 @@
 import UIKit
 import JTAppleCalendar
 
-class CalendarHeader: JTAppleCollectionReusableView {
-        
+class CalendarHeader: JTAppleCollectionReusableView {        
 }

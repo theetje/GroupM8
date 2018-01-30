@@ -17,6 +17,12 @@ class backTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         TableArray = ["Chatbox", "Agenda", "Instellingen"]
+        
+        // Layout:
+        // We set the table view header.
+//        let cellTableViewHeader = tableView.dequeueReusableCellWithIdentifier(TableViewController.tableViewHeaderCustomCellIdentifier) as! UITableViewCell
+//        cellTableViewHeader.frame = CGRectMake(0, 0, self.tableView.bounds.width, self.heightCache[TableViewController.tableViewHeaderCustomCellIdentifier]!)
+//        self.tableView.tableHeaderView = cellTableViewHeader
     }
 
     override func didReceiveMemoryWarning() {

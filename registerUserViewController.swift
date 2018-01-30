@@ -19,6 +19,7 @@ class registerUserViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var wachtwoordTextFieldOpnieuw: UITextField!
     @IBOutlet weak var groupIDTextField: UITextField!
     @IBOutlet weak var chatNameTextField: UITextField!
+    @IBOutlet weak var registerButton: UIButton!
     
     // Actions:
     @IBAction func registerUser(_ sender: Any) {
@@ -36,35 +37,48 @@ class registerUserViewController: UIViewController, UITextFieldDelegate {
                             User.shared.chatName = self.chatNameTextField.text!
                             User.shared.email = self.mailTextField.text!
                             User.shared.group = self.groupIDTextField.text!
+                            
                             // Succes ga naar de pagina die gewenst is.
                             print("--- User account made ---")
                             self.performSegue(withIdentifier: "registeringComplete", sender: self)
                         } else {
                             // Geef een fout melding indien nodig.
                             if let myError = error?.localizedDescription {
-                                print("--- Error description: \(myError) ---")
+                                self.showAlert(title: "Register Error", message: "\(myError)")
+                                print("Error description: \(myError).")
                             }
                         }
                     })
                 } else {
-                    print("group is empty")
+                    print("A group name must be specified.")
+                    showAlert(title: "Empty Field", message: "A group name must be specified.")
                 }
             } else {
                 // Wachtwoorden is niet het zelfde.
-                print("--- Password field are not the same ---")
+                print("Password field are not the same.")
+                showAlert(title: "Repeat password", message: "Password field are not the same.")
             }
         } else {
             // Wachtwoord veld of text is leeg.
-            print("--- Password field is empty ---")
+            print("Password field is empty.")
+            showAlert(title: "Empty Field", message: "Password field is empty.")
         }
+        
+        // Bounce effect
+        registerButton.bounce()
     }
 
     // Overrides:
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Haald het toetsenbord weg als je ergens anders tapped.
+        // Layout:
         self.hideKeyboardWhenTappedAround()
+        registerButton.layer.cornerRadius = 5
+        // Haald de shadow onderaan de navigatie balk
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+
     }
 
     override func didReceiveMemoryWarning() {

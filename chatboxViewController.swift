@@ -46,9 +46,15 @@ class chatboxViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Layout:
         // Connect het nib (xib) bestand.
         let nib = UINib(nibName: "messageTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "messageCell")
+        self.hideKeyboardWhenTappedAround()
+        // Haald de shadow onderaan de navigatie balk
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+
         
         // Programmatic link for tableView
         tableView.dataSource = self
@@ -98,20 +104,6 @@ class chatboxViewController: UIViewController, UITableViewDataSource, UITableVie
         // Sorteer de berichten van oud naar nieuw en keer om.
         MessageArray.sort(by: { $0.TimeStamp?.compare($1.TimeStamp!) == .orderedAscending })
         MessageArray.reverse()
-        
-        print(MessageArray)
-        // Zet berichten in de cell.
-//        if let messageText = MessageArray[indexPath.row].MessageText {
-//            cell.messageContentLabel?.text = messageText
-//        }
-//
-//        if let timestamp = MessageArray[indexPath.row].TimeStamp {
-//            cell.messageTimestempLabel?.text = timestamp
-//        }
-//
-//        if let writer = MessageArray[indexPath.row].MessageWriter {
-//            cell.messageWriterLabel?.text = writer
-//        }
         
         cell.messageContentLabel?.text = MessageArray[indexPath.row].MessageText!
         cell.messageTimestempLabel?.text = MessageArray[indexPath.row].TimeStamp!

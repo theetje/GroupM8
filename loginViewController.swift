@@ -15,6 +15,7 @@ class loginViewController: UIViewController {
     // Outlets
     @IBOutlet weak var mailTextField: UITextField!
     @IBOutlet weak var wachtwoordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
     
     // Actions:
     @IBAction func loginButton(_ sender: Any) {
@@ -33,19 +34,31 @@ class loginViewController: UIViewController {
                     })
                 } else {
                     if let myError = error?.localizedDescription {
+                        // Geef de firebase error door aan een gebruiker en op terminal.
+                        self.showAlert(title: "Login Error", message: myError)
                         print("Error description: \(myError)")
                     }
                 }
             })
         } else {
-            print("Een veld is leeg")
+            // Een veld is nog leeg.s
+            showAlert(title: "Login Error", message: "A field is empty")
         }
+        // Bounce effect
+        loginButton.bounce()
     }
     
     // Overrides:
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Layout:
+        loginButton.layer.cornerRadius = 5
         self.hideKeyboardWhenTappedAround()
+        // Haald de shadow onderaan de navigatie balk
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,15 +66,23 @@ class loginViewController: UIViewController {
     }
 }
 
-// Put this piece of code anywhere you like
 extension UIViewController {
+    // User alert fuctie om gebruikers te vertellen wat ze niet goed doen.
+    func showAlert(title: String, message: String) -> Void {
+        let alert = UIAlertController(title: "\(title)", message: "\(message)", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    // Functie die Keyboard effectief weghaald.
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    // Vervolg functie die in ViewDidLoad gebruikt wordt.
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
     }
 }

@@ -23,7 +23,7 @@ class DatabaseQuerys {
         return dateFormatter
     }()
     
-    // Functie met completion handler omdat anders de retrun altijd leeg is:
+    // Functie met completion handler omdat anders de return altijd leeg is:
     func findUserInfo(completion: @escaping (User) -> ())  {
         // Haal de userID op waaronder info is opgeslagen in de database.
         let userID = Auth.auth().currentUser?.uid
@@ -62,9 +62,9 @@ class DatabaseQuerys {
                     let date = calandarEvent["Date"] as? String ?? ""
                     let eventName = calandarEvent["EventName"] as? String ?? ""
                     let eventDesctiption = calandarEvent["eventDesctiption"] as? String ?? ""
-                    let partisipents = calandarEvent["partisipents"] as? Int ?? 1
+//                    let partisipents = calandarEvent["partisipents"] as? Int ?? 1
                     
-                    let event = Event(date: date, eventName: eventName, eventDesctiption: eventDesctiption, partisipents: partisipents, eventKey: eventKey)
+                    let event = Event(date: date, eventName: eventName, eventDesctiption: eventDesctiption, eventKey: eventKey)
                     events.append(event)
                 }
             } else {

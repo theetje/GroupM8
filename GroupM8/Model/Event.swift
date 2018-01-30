@@ -13,6 +13,6 @@ struct Event {
     var date: String?
     var eventName: String?
     var eventDesctiption: String?
-    var partisipents: Int?
+//    var participants: Int?
     var eventKey: String?
 }
