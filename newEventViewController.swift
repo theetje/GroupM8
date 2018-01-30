@@ -11,10 +11,9 @@ import FirebaseDatabase
 
 class newEventViewController: UIViewController {
     // ref wordt een DatabaseReference object
-    let databaseQuerysInstance = DatabaseQuerys()
     var ref : DatabaseReference!
-    var user: User?
     var strDate = Date()
+    
     // Date formatter object.
     let formatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -42,7 +41,7 @@ class newEventViewController: UIViewController {
     
     @IBAction func saveTheDate(_ sender: Any) {
         if eventTextField.text != "" {
-            databaseQuerysInstance.writeEventToDatabase(userGroup: User.shared.group!, dateSetForEvent: formatter.string(from: strDate), eventName: eventTextField.text!, eventDescription: eventDesctiption.text!)
+            DatabaseQuerys.shared.writeEventToDatabase(userGroup: User.shared.group!, dateSetForEvent: formatter.string(from: strDate), eventName: eventTextField.text!, eventDescription: eventDesctiption.text!)
             // TODO: zorg dat na het oplaan evenementen wel ok blijven
             print("The date is saved.")
             dismiss(animated: true, completion: nil)

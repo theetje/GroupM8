@@ -9,16 +9,15 @@
 import UIKit
 import JTAppleCalendar
 
-class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate {
+class agendaViewController: UIViewController,/* UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, */UITableViewDataSource, UITableViewDelegate {
     
-    let dataBaseQueryInstence = DatabaseQuerys()
+    // varbiabelen die nodig zijn.
     var user: User?
     var events = [Event]()
     var eventData = [Event]()
     
     // Outlets:
     @IBOutlet weak var hamburgerButton: UIBarButtonItem!
-//    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var calenderView: JTAppleCalendarView!
     @IBOutlet weak var yearLable: UILabel!
     @IBOutlet weak var monthLable: UILabel!
@@ -40,32 +39,21 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     // Overrides:
     override func viewDidLoad() {        
         super.viewDidLoad()
+
+        // Layout:
+        // Scroll naar de huidige datum, zonder animatie
         // setup van de cell waar 1 dag zich in bevind.
         setupCalandarView()
-        // Deze instelling maakt dat de calender per maand stopt.
-        calenderView.scrollingMode = .stopAtEachSection
-        
-        // Zoek de data van de gebruiker op.
-        self.dataBaseQueryInstence.findUserInfo() { userInfo in
-            self.user = userInfo
-            // Haal de evenementen op uit de databse.
-            self.dataBaseQueryInstence.getCalendarEvents(userGroup: User.shared.group!, completion: { dataBaseData in
-                
-                self.events = dataBaseData
-                
-                // Reload data to show.
-                self.calenderView.reloadData()
-                self.tableView.reloadData()
-            })
-        }        
-
-        // Scroll naar de huidige datum, zonder animatie
+        // Ga naar vandaag.
         calenderView.scrollToDate(Date(), animateScroll: false )
         
         calenderView.visibleDates { dateSegment in
             self.setupViewsOfCalendar(from: dateSegment)
-            
         }
+        
+        // Connect het nib (xib) bestand.
+        let nib = UINib(nibName: "calendarTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "eventCell")
         
         // De functies voor het hamburger menu.
         hamburgerButton.target = self.revealViewController()
@@ -75,10 +63,22 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         // Laat de tableView weten dat dit zijn bron van info is.
         tableView.dataSource = self
         tableView.delegate = self
+        // Deze instelling maakt dat de calender per maand stopt.
+        calenderView.scrollingMode = .stopAtEachSection
         
-        // Connect het nib (xib) bestand.
-        let nib = UINib(nibName: "calendarTableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "eventCell")
+        // Zoek de data van de gebruiker op.
+        DatabaseQuerys.shared.findUserInfo() { userInfo in
+            self.user = userInfo
+            // Haal de evenementen op uit de databse.
+            DatabaseQuerys.shared.getCalendarEvents(userGroup: User.shared.group!, completion: { dataBaseData in
+                
+                self.events = dataBaseData
+                
+                // Reload data to show.
+                self.calenderView.reloadData()
+                self.tableView.reloadData()
+            })
+        }
     }
     
     // Functions:
@@ -210,20 +210,18 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
     
                             /* --- Functions nodig voor CollectionView --- */
     // Functions (nodig voor class CollectionView):
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // collectionView hoord bij protocol
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // collectrionViewCell hoord bij protocol
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath as IndexPath)
-        return cell
-    }
-    
-                            /* --- Functions nodig voor TableView --- */
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        // collectionView hoord bij protocol
+//        return 1
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        // collectrionViewCell hoord bij protocol
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath as IndexPath)
+//        return cell
+//    }
+                            /* --- Delegate functions nodig voor TableView --- */
     func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
@@ -241,12 +239,14 @@ class agendaViewController: UIViewController, UICollectionViewDelegateFlowLayout
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZ"
         let formattedTime = formatter.date(from: eventData[indexPath.row].date!)
         formatter.dateFormat = "HH:mm"
+        
         cell.eventTimeLabel?.text = formatter.string(from: formattedTime!)
         cell.eventNameLabel?.text = eventData[indexPath.row].eventName
         cell.eventDescriptionLabel.text = eventData[indexPath.row].eventDesctiption
         cell.dateID?.text = String(eventData[indexPath.row].eventKey!)
+        
         // Laat zien hoeveel mensen zich hebben aangemeld voor een evenement.
-        self.dataBaseQueryInstence.getAttendeesEvent(userGroup: User.shared.group!, eventID: eventData[indexPath.row].eventKey!, completion: { attendees in
+        DatabaseQuerys.shared.getAttendeesEvent(userGroup: User.shared.group!, eventID: eventData[indexPath.row].eventKey!, completion: { attendees in
             cell.counterLabel.text = String(attendees)
         })
         
@@ -259,7 +259,7 @@ extension agendaViewController: JTAppleCalendarViewDelegate {
     // Extentie voor de delegate
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         // Maak de cell de datum in staat.
-        let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "calendarCell", for: indexPath) as! calendarCollectionViewCell
+        let cell = calendar.dequeueReusableCell(withReuseIdentifier: "calendarCell", for: indexPath) as! calendarCollectionViewCell
         cell.dateLable.text = cellState.text
         
         // Functies die nodig zijn sbij creatie van de cell.
@@ -315,7 +315,13 @@ extension agendaViewController: JTAppleCalendarViewDataSource {
 
     // Funcie hier onder moet om aan JTApplecalendarViewDataSource te voldoen.
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
-
+        // This function should have the same code as the cellForItemAt function
+        // Maak de cell de datum in staat.
+        let cell = calendar.dequeueReusableCell(withReuseIdentifier: "calendarCell", for: indexPath) as! calendarCollectionViewCell
+        cell.dateLable.text = cellState.text
+        
+        // Functies die nodig zijn sbij creatie van de cell.
+        configureCell(cell: cell, cellState: cellState)
     }
 }
 
@@ -333,3 +339,4 @@ extension UIView {
         })
     }
 }
+

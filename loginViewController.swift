@@ -12,6 +12,9 @@ import FirebaseAuth
 
 class loginViewController: UIViewController {
     
+    // Instence of class for 
+    let DatabaseQueryInstance = DatabaseQuerys()
+    
     // Outlets
     @IBOutlet weak var mailTextField: UITextField!
     @IBOutlet weak var wachtwoordTextField: UITextField!
@@ -24,8 +27,7 @@ class loginViewController: UIViewController {
                 if user != nil {
                     print("--- login gelukt! ---")
                     
-                    let DatabaseQueryInstance = DatabaseQuerys()
-                    DatabaseQueryInstance.findUserInfo(completion: { userInfo in
+                    self.DatabaseQueryInstance.findUserInfo(completion: { userInfo in
                         User.shared.chatName = userInfo.chatName
                         User.shared.email = userInfo.email
                         User.shared.group = userInfo.group

@@ -13,6 +13,5 @@ struct Event {
     var date: String?
     var eventName: String?
     var eventDesctiption: String?
-//    var participants: Int?
     var eventKey: String?
 }

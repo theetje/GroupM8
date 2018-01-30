@@ -13,6 +13,7 @@ import FirebaseAuth
 
 class instellingenViewController: UIViewController {
     
+    // Get user info from firebase
     let user = Auth.auth().currentUser
     
     // Outlets:

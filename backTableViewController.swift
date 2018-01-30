@@ -16,6 +16,7 @@ class backTableViewController: UITableViewController {
     // Overrides:
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Namen van het hamburger menu
         TableArray = ["Chatbox", "Agenda", "Instellingen"]
         
         // Layout:
@@ -27,10 +28,9 @@ class backTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
-    // Table view data source
+                                /* --- Delegate functions nodig voor TableView --- */
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

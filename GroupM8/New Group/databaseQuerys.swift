@@ -11,6 +11,10 @@ import FirebaseDatabase
 import FirebaseAuth
 
 class DatabaseQuerys {
+    
+    // Maak it self. global
+    static var shared = DatabaseQuerys()
+    
     // Database reference
     var ref: DatabaseReference?
     
@@ -62,7 +66,6 @@ class DatabaseQuerys {
                     let date = calandarEvent["Date"] as? String ?? ""
                     let eventName = calandarEvent["EventName"] as? String ?? ""
                     let eventDesctiption = calandarEvent["eventDesctiption"] as? String ?? ""
-//                    let partisipents = calandarEvent["partisipents"] as? Int ?? 1
                     
                     let event = Event(date: date, eventName: eventName, eventDesctiption: eventDesctiption, eventKey: eventKey)
                     events.append(event)

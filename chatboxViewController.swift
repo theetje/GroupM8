@@ -13,8 +13,7 @@ class chatboxViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // Maak array die berichten bevat.
     var MessageArray = [Message]()
-    // Database clas instance
-    let databaseQuerysInstance = DatabaseQuerys()
+
     // Date formatter object.
     let formatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -33,7 +32,7 @@ class chatboxViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBAction func sendMessage(_ sender: Any) {
         // Controller of er een bericht is geschreven.
         if messageTextField.text != "" {
-            databaseQuerysInstance.writeMessageToDatabase(userGroup: User.shared.group!, userChatName: User.shared.chatName!, message: self.messageTextField.text!)
+            DatabaseQuerys.shared.writeMessageToDatabase(userGroup: User.shared.group!, userChatName: User.shared.chatName!, message: self.messageTextField.text!)
             
             // Maak het text veld weer leeg.
             self.messageTextField.text = ""
@@ -66,17 +65,18 @@ class chatboxViewController: UIViewController, UITableViewDataSource, UITableVie
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
         // Haal de evenementen op uit de databse.
-        databaseQuerysInstance.getMessages(userGroup: User.shared.group!, completion: { messagesFromDatabase in
+        DatabaseQuerys.shared.getMessages(userGroup: User.shared.group!, completion: { messagesFromDatabase in
             if messagesFromDatabase.count > 0 {
-                var tempArray = [Message]()
+                var messageArray = [Message]()
                 for message in messagesFromDatabase {
-                    tempArray.append(message)
+                    messageArray.append(message)
                 }
-                self.MessageArray = tempArray
+                self.MessageArray = messageArray
                 
                 // Omdate je geen langzame app wil async data ophalen.
                 self.tableView.reloadData()
             } else {
+                self.showAlert(title: "Oeps!", message: "No messages could be loaded form the server.")
                 print("Berichten niet opgehaald")
             }
         })

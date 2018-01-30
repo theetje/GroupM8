@@ -78,7 +78,6 @@ class registerUserViewController: UIViewController, UITextFieldDelegate {
         // Haald de shadow onderaan de navigatie balk
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-
     }
 
     override func didReceiveMemoryWarning() {
