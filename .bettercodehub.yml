@@ -1,11 +1,10 @@
-component_depth: 3
+component_depth: 2
 languages:
 - swift
-# exclude:
-# - /Pods/.*
-# - /DirectoryYouWantToExclude/.*
-# - .*/FileYouWantToExclude\.java
-# - .*/SWRevealViewController\.h
-# - .*/SWRevealViewController\.m
-# - .*/GroupM8-Bridging-Header\.h
-# - .*/DefaultType\.DefaultUnit
+
+- name: objectivec
+  production:
+    exclude:
+        - .*/SWRevealViewController\.h
+        - .*/SWRevealViewController\.m
+        - .*/GroupM8-Bridging-Header\.h
