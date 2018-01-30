@@ -684,7 +684,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <outlet property="dateLable" destination="Vb6-n7-ef3" id="h9x-BB-SZK"/>
+                                                    <outlet property="dateLable" destination="Vb6-n7-ef3" id="UC3-Hb-GWB"/>
                                                     <outlet property="dotSelecter" destination="sZD-OT-aP3" id="bGg-sn-pPq"/>
                                                     <outlet property="selectedView" destination="R2z-Rn-cFN" id="kmj-Cb-iRz"/>
                                                 </connections>
@@ -1138,7 +1138,7 @@
         <image name="Hamburger menu button" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gwn-Kp-B4o"/>
+        <segue reference="ZZZ-QB-Qcf"/>
         <segue reference="6nF-yj-MXh"/>
     </inferredMetricsTieBreakers>
 </document>

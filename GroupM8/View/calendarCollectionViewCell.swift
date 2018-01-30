@@ -6,7 +6,6 @@
 //  Copyright © 2018 Thomas De lange. All rights reserved.
 //
 
-import UIKit
 import JTAppleCalendar
 
 class calendarCollectionViewCell: JTAppleCell {

@@ -42,12 +42,13 @@ class newEventViewController: UIViewController {
     @IBAction func saveTheDate(_ sender: Any) {
         if eventTextField.text != "" {
             DatabaseQuerys.shared.writeEventToDatabase(userGroup: User.shared.group!, dateSetForEvent: formatter.string(from: strDate), eventName: eventTextField.text!, eventDescription: eventDesctiption.text!)
-            // TODO: zorg dat na het oplaan evenementen wel ok blijven
+            
             print("The date is saved.")
             dismiss(animated: true, completion: nil)
         } else {
-            // TODO: Geef hier user warning.
+            // Geef hier user warning.
             print("textField is leeg")
+            showAlert(title: "Oeps!", message: "No eventname pressent.")
         }
     }
     
@@ -57,7 +58,6 @@ class newEventViewController: UIViewController {
         self.hideKeyboardWhenTappedAround()
         
         datePickerOutlet.setValue(UIColor.white, forKey: "textColor")
-        // datePickerOutlet.performSelector("setHighlightsToday:", withObject:DesignHelper.getOffWhiteColor())
     }
 
     override func didReceiveMemoryWarning() {

@@ -9,7 +9,7 @@
 import UIKit
 import JTAppleCalendar
 
-class agendaViewController: UIViewController,/* UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, */UITableViewDataSource, UITableViewDelegate {
+class agendaViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // varbiabelen die nodig zijn.
     var user: User?
@@ -207,19 +207,6 @@ class agendaViewController: UIViewController,/* UICollectionViewDelegateFlowLayo
         formatter.dateFormat = "MMMM"
         monthLable.text = formatter.string(from: date)
     }
-    
-                            /* --- Functions nodig voor CollectionView --- */
-    // Functions (nodig voor class CollectionView):
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        // collectionView hoord bij protocol
-//        return 1
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        // collectrionViewCell hoord bij protocol
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath as IndexPath)
-//        return cell
-//    }
                             /* --- Delegate functions nodig voor TableView --- */
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -260,7 +247,9 @@ extension agendaViewController: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         // Maak de cell de datum in staat.
         let cell = calendar.dequeueReusableCell(withReuseIdentifier: "calendarCell", for: indexPath) as! calendarCollectionViewCell
-        cell.dateLable.text = cellState.text
+        
+        // Zet de juiste datum in de dateLabel
+        cell.dateLable?.text = cellState.text
         
         // Functies die nodig zijn sbij creatie van de cell.
         configureCell(cell: cell, cellState: cellState)
