@@ -585,7 +585,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxk-f2-UK8">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxk-f2-UK8">
                                         <rect key="frame" x="187.5" y="0.0" width="187.5" height="48"/>
                                         <color key="backgroundColor" red="0.19431310892105103" green="0.55818575620651245" blue="0.84994179010391235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -598,7 +598,7 @@
                                 </constraints>
                             </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MbL-hT-J5J" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
-                                <rect key="frame" x="0.0" y="111" width="375" height="356"/>
+                                <rect key="frame" x="0.0" y="111" width="375" height="376"/>
                                 <color key="backgroundColor" red="0.19431310892105103" green="0.55818575620651245" blue="0.84994179010391235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Xzx-oG-ftH">
                                     <size key="itemSize" width="130" height="130"/>
@@ -615,11 +615,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2z-Rn-cFN">
-                                                    <rect key="frame" x="45" y="45" width="40" height="40"/>
+                                                    <rect key="frame" x="46" y="46" width="38" height="38"/>
                                                     <color key="backgroundColor" red="0.2551485308" green="1" blue="0.38749678910000002" alpha="0.76000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="Fdm-dP-MTb"/>
-                                                        <constraint firstAttribute="width" constant="40" id="Pza-us-8L3"/>
+                                                        <constraint firstAttribute="height" constant="38" id="Fdm-dP-MTb"/>
+                                                        <constraint firstAttribute="width" constant="38" id="Pza-us-8L3"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
@@ -670,7 +670,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="zAw-6k-LLZ" customClass="CalendarHeader" customModule="GroupM8" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="288" height="356"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="288" height="376"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="aR8-9H-Log">
@@ -742,10 +742,10 @@
                                 </connections>
                             </collectionView>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IWL-KA-776">
-                                <rect key="frame" x="0.0" y="467" width="375" height="200"/>
+                                <rect key="frame" x="0.0" y="487" width="375" height="180"/>
                                 <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="YLB-1o-c0h"/>
+                                    <constraint firstAttribute="height" constant="180" id="YLB-1o-c0h"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCell" id="aDn-ad-KN6" customClass="calendarTableViewCell" customModule="GroupM8" customModuleProvider="target">
@@ -776,7 +776,7 @@
                             <constraint firstItem="0dT-in-AWx" firstAttribute="leading" secondItem="och-MG-Joe" secondAttribute="leading" id="c87-80-cOI"/>
                             <constraint firstItem="IWL-KA-776" firstAttribute="leading" secondItem="och-MG-Joe" secondAttribute="leading" id="f67-SA-c6H"/>
                             <constraint firstItem="ymd-y4-FzU" firstAttribute="top" secondItem="uks-4y-VkY" secondAttribute="top" id="hCg-BI-k1f"/>
-                            <constraint firstItem="MbL-hT-J5J" firstAttribute="bottom" secondItem="och-MG-Joe" secondAttribute="bottom" constant="-200" id="r4M-73-poo"/>
+                            <constraint firstItem="MbL-hT-J5J" firstAttribute="bottom" secondItem="och-MG-Joe" secondAttribute="bottom" constant="-180" id="r4M-73-poo"/>
                             <constraint firstItem="ymd-y4-FzU" firstAttribute="trailing" secondItem="och-MG-Joe" secondAttribute="trailing" id="wvk-Vp-mLh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="och-MG-Joe"/>
@@ -801,14 +801,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xfg-cP-pru">
-                                <rect key="frame" x="0.0" y="-2" width="375" height="669"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xfg-cP-pru">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.1943131089" green="0.55818575619999999" blue="0.84994179010000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="PvZ-Qz-h8p">
-                                <rect key="frame" x="0.0" y="97" width="375" height="162"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="PvZ-Qz-h8p">
+                                <rect key="frame" x="0.0" y="70" width="375" height="216"/>
                                 <color key="backgroundColor" red="0.19431310892105103" green="0.55818575620651245" blue="0.84994179010391235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <date key="date" timeIntervalSinceReferenceDate="538060036.69795799">
                                     <!--2018-01-19 13:07:16 +0000-->
@@ -817,18 +815,22 @@
                                     <action selector="datePicker:" destination="zby-Ij-pPz" eventType="valueChanged" id="Fjr-ie-bKO"/>
                                 </connections>
                             </datePicker>
-                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hWJ-QV-BEN">
+                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hWJ-QV-BEN">
                                 <rect key="frame" x="16" y="329" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="0.85974957190000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="aUu-zX-BRK"/>
+                                </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eeR-5w-8ux">
-                                <rect key="frame" x="16" y="556" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eeR-5w-8ux">
+                                <rect key="frame" x="20" y="556" width="335" height="30"/>
                                 <color key="backgroundColor" red="0.2551485308" green="1" blue="0.38749678910000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Zdf-Qh-g2s"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Save the Date">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -842,9 +844,8 @@
                                     <action selector="saveTheDate:" destination="zby-Ij-pPz" eventType="touchUpInside" id="ScG-Z9-bYb"/>
                                 </connections>
                             </button>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSS-83-KRl">
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSS-83-KRl">
                                 <rect key="frame" x="0.0" y="26" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="barTintColor" red="0.19431310892105103" green="0.55818575620651245" blue="0.84994179010391235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textAttributes key="titleTextAttributes">
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -860,30 +861,62 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Evenement Naam:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FL6-Dm-aWL">
-                                <rect key="frame" x="16" y="283" width="190" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evenement Naam:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FL6-Dm-aWL">
+                                <rect key="frame" x="16" y="283" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Evenement Beschrijving:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qti-03-Rfp">
-                                <rect key="frame" x="16" y="382" width="188" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evenement Beschrijving:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qti-03-Rfp">
+                                <rect key="frame" x="16" y="382" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QBq-cI-mKx">
+                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QBq-cI-mKx">
                                 <rect key="frame" x="16" y="411" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="0.85974957190000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="xg2-sJ-FaL"/>
+                                </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FL6-Dm-aWL" firstAttribute="centerX" secondItem="4zg-2k-FDh" secondAttribute="centerX" id="A4W-Cy-Qzp"/>
+                            <constraint firstItem="FL6-Dm-aWL" firstAttribute="centerY" secondItem="4zg-2k-FDh" secondAttribute="centerY" constant="-40" id="APy-Yz-FJw"/>
+                            <constraint firstItem="PL4-X1-QCg" firstAttribute="trailing" secondItem="QBq-cI-mKx" secondAttribute="trailing" constant="16" id="Ad4-RO-rAm"/>
+                            <constraint firstItem="eeR-5w-8ux" firstAttribute="centerY" secondItem="4zg-2k-FDh" secondAttribute="centerY" constant="237.5" id="AmV-t2-qf1"/>
+                            <constraint firstItem="wSS-83-KRl" firstAttribute="leading" secondItem="PL4-X1-QCg" secondAttribute="leading" id="Doe-ht-Fmy"/>
+                            <constraint firstItem="FL6-Dm-aWL" firstAttribute="leading" secondItem="PL4-X1-QCg" secondAttribute="leading" constant="16" id="Dq2-bB-Run"/>
+                            <constraint firstItem="Xfg-cP-pru" firstAttribute="top" secondItem="4zg-2k-FDh" secondAttribute="top" id="Ncf-V8-mgH"/>
+                            <constraint firstItem="PL4-X1-QCg" firstAttribute="trailing" secondItem="FL6-Dm-aWL" secondAttribute="trailing" constant="16" id="PQr-bt-GNR"/>
+                            <constraint firstItem="QBq-cI-mKx" firstAttribute="centerY" secondItem="4zg-2k-FDh" secondAttribute="centerY" constant="92.5" id="Puf-pH-M2T"/>
+                            <constraint firstItem="hWJ-QV-BEN" firstAttribute="centerY" secondItem="4zg-2k-FDh" secondAttribute="centerY" constant="10.5" id="Qut-CG-CJO"/>
+                            <constraint firstItem="eeR-5w-8ux" firstAttribute="leading" secondItem="PL4-X1-QCg" secondAttribute="leading" constant="20" id="TJW-8a-hAx"/>
+                            <constraint firstItem="QBq-cI-mKx" firstAttribute="leading" secondItem="PL4-X1-QCg" secondAttribute="leading" constant="16" id="VoX-4J-1bI"/>
+                            <constraint firstItem="wSS-83-KRl" firstAttribute="top" secondItem="PL4-X1-QCg" secondAttribute="top" constant="6" id="Wbo-LR-YvV"/>
+                            <constraint firstItem="PL4-X1-QCg" firstAttribute="trailing" secondItem="hWJ-QV-BEN" secondAttribute="trailing" constant="16" id="YTl-ku-rls"/>
+                            <constraint firstItem="Xfg-cP-pru" firstAttribute="bottom" secondItem="PL4-X1-QCg" secondAttribute="bottom" id="ZJM-Mp-80Q"/>
+                            <constraint firstItem="eeR-5w-8ux" firstAttribute="centerX" secondItem="4zg-2k-FDh" secondAttribute="centerX" id="bTX-dq-3TH"/>
+                            <constraint firstItem="wSS-83-KRl" firstAttribute="trailing" secondItem="PL4-X1-QCg" secondAttribute="trailing" id="c0Z-sE-DMC"/>
+                            <constraint firstItem="PvZ-Qz-h8p" firstAttribute="trailing" secondItem="PL4-X1-QCg" secondAttribute="trailing" id="eAC-nv-NQ8"/>
+                            <constraint firstItem="qti-03-Rfp" firstAttribute="centerY" secondItem="4zg-2k-FDh" secondAttribute="centerY" constant="59" id="gAW-Zi-CkF"/>
+                            <constraint firstItem="Xfg-cP-pru" firstAttribute="trailing" secondItem="PL4-X1-QCg" secondAttribute="trailing" id="i1O-eS-chO"/>
+                            <constraint firstItem="PvZ-Qz-h8p" firstAttribute="centerY" secondItem="4zg-2k-FDh" secondAttribute="centerY" constant="-155.5" id="k34-zj-41s"/>
+                            <constraint firstItem="PL4-X1-QCg" firstAttribute="trailing" secondItem="eeR-5w-8ux" secondAttribute="trailing" constant="20" id="kxe-cR-C5e"/>
+                            <constraint firstItem="hWJ-QV-BEN" firstAttribute="centerX" secondItem="4zg-2k-FDh" secondAttribute="centerX" id="tWQ-gS-Udz"/>
+                            <constraint firstItem="PvZ-Qz-h8p" firstAttribute="leading" secondItem="PL4-X1-QCg" secondAttribute="leading" id="ta3-a3-5XA"/>
+                            <constraint firstItem="qti-03-Rfp" firstAttribute="leading" secondItem="PL4-X1-QCg" secondAttribute="leading" constant="16" id="ti8-m7-uRz"/>
+                            <constraint firstItem="qti-03-Rfp" firstAttribute="centerX" secondItem="4zg-2k-FDh" secondAttribute="centerX" id="tq7-lO-qDb"/>
+                            <constraint firstItem="PL4-X1-QCg" firstAttribute="trailing" secondItem="qti-03-Rfp" secondAttribute="trailing" constant="16" id="tyD-g2-EKO"/>
+                            <constraint firstItem="QBq-cI-mKx" firstAttribute="centerX" secondItem="4zg-2k-FDh" secondAttribute="centerX" id="uBu-cB-dZT"/>
+                            <constraint firstItem="Xfg-cP-pru" firstAttribute="leading" secondItem="PL4-X1-QCg" secondAttribute="leading" id="uPt-G8-ZIA"/>
+                            <constraint firstItem="hWJ-QV-BEN" firstAttribute="leading" secondItem="PL4-X1-QCg" secondAttribute="leading" constant="16" id="ufw-HX-SEc"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="PL4-X1-QCg"/>
                     </view>
                     <connections>
