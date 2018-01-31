@@ -152,13 +152,13 @@
 		E9032FD52007A03D006483FA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E9CBD8BD201A3D7F00068481 /* instellingenViewController.swift */,
-				E944ACC720122AB600F502D3 /* newEventViewController.swift */,
-				E9BE2F0D200E610000953D88 /* chatboxViewController.swift */,
-				E9BE2F0F200E611200953D88 /* agendaViewController.swift */,
-				E9032FE22007BBFF006483FA /* backTableViewController.swift */,
-				E92C2AC1200CEE0C00580F31 /* registerUserViewController.swift */,
 				E9032FD62007A0C8006483FA /* loginViewController.swift */,
+				E92C2AC1200CEE0C00580F31 /* registerUserViewController.swift */,
+				E9BE2F0D200E610000953D88 /* chatboxViewController.swift */,
+				E9CBD8BD201A3D7F00068481 /* instellingenViewController.swift */,
+				E9BE2F0F200E611200953D88 /* agendaViewController.swift */,
+				E944ACC720122AB600F502D3 /* newEventViewController.swift */,
+				E9032FE22007BBFF006483FA /* backTableViewController.swift */,
 			);
 			name = Controller;
 			path = ..;

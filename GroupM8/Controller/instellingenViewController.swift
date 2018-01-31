@@ -59,9 +59,14 @@ class instellingenViewController: UIViewController {
     @IBAction func changeGroup(_ sender: Any) {
         // Verander het User.shared object
         if newGroupField.text != "" {
+            // Change Group in database and in saved shared instance
             User.shared.group = newGroupField.text
+            DatabaseQuerys.shared.changeUserGroup(newGroup: newGroupField.text!)
+            
             // Empty Field after usages.
             newGroupField.text = ""
+
+            
         } else {
             print("No new group specified.")
             showAlert(title: "Oeps!", message: "No new groupt specified.")

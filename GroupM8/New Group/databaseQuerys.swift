@@ -161,6 +161,17 @@ class DatabaseQuerys {
         newUserRef?.child("ChatName").setValue(chatName)
     }
     
+    func changeUserGroup(newGroup: String) {
+        // Initieer ref naar de datbase.
+        let userID = Auth.auth().currentUser?.uid
+        
+        // Maak een referenctie naar de database en een userID
+        ref = Database.database().reference()
+        let newUserRef = ref?.child("Users").child(userID!)
+        
+        newUserRef?.child("Group").setValue(newGroup)
+    }
+    
     // Schrijf een bericht op het berichtenbord.
     func writeMessageToDatabase(userGroup: String, userChatName: String, message: String) {
         // Initieer ref naar de datbase.

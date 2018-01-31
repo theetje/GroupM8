@@ -60,6 +60,20 @@ class loginViewController: UIViewController {
         // Haald de shadow onderaan de navigatie balk
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        
+        Auth.auth().addStateDidChangeListener({ auth, user in
+            // Kijk of er data is voor user (uit keyChain)
+            if let _ = user {
+                // Haal wel opnieuw data op om te kijken of de gebruikers info veranders is.
+                self.DatabaseQueryInstance.findUserInfo(completion: { userInfo in
+                    User.shared.chatName = userInfo.chatName
+                    User.shared.email = userInfo.email
+                    User.shared.group = userInfo.group
+                    
+                    self.performSegue(withIdentifier: "loginSucces", sender: self)
+                })
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
