@@ -5,6 +5,9 @@
 //  Created by Thomas De lange on 16-01-18.
 //  Copyright © 2018 Thomas De lange. All rights reserved.
 //
+// AgendaViewController is de CollectionView en TableView waar het meeste om draaid.
+// Deze zijn dus mede mogelijk gemaakt door: https://cocoapods.org/pods/JTAppleCalendar
+// Tableview laat events zien en de collection view de data.
 
 import UIKit
 import JTAppleCalendar
@@ -82,8 +85,8 @@ class agendaViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     // Functions:
+    // setup van de cell waar 1 dag zich in bevind.
     func setupCalandarView() {
-        // setup van de cell waar 1 dag zich in bevind.
         calenderView.minimumLineSpacing = 0
         calenderView.minimumInteritemSpacing = 0
         
@@ -122,6 +125,7 @@ class agendaViewController: UIViewController, UITableViewDataSource, UITableView
             return formatter.string(from: eventDate) == formatter.string(from: cellState.date)
         }
         
+        // Hiervan krijgt de calendar een punt(hoofd van.) onder de datum als er een event is.
         if bool == true {
             eventData = handleSelectedDateEvents(cell: myCustomCell, cellState: cellState)
             tableView.reloadData()

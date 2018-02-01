@@ -5,6 +5,7 @@
 //  Created by Thomas De lange on 16-01-18.
 //  Copyright © 2018 Thomas De lange. All rights reserved.
 //
+// ViewController van de chatbox. Meeste gebeurt in viewDidLoad en de tableViewController.
 
 import UIKit
 import FirebaseAuth

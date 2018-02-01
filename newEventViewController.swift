@@ -5,6 +5,8 @@
 //  Created by Thomas De lange on 19-01-18.
 //  Copyright © 2018 Thomas De lange. All rights reserved.
 //
+// Het is nodig om een nieuw event aan te maken, vandaar deze viewController. Is een
+// verleng stuk van de calendar.
 
 import UIKit
 import FirebaseDatabase
@@ -60,12 +62,10 @@ class newEventViewController: UIViewController {
         // Layout:
         self.hideKeyboardWhenTappedAround()
         addKeyboardNotifications()
-        
         datePickerOutlet.setValue(UIColor.white, forKey: "textColor")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

@@ -5,11 +5,11 @@
 //  Created by Thomas De lange on 25-01-18.
 //  Copyright © 2018 Thomas De lange. All rights reserved.
 //
+// Instellingen is de viewController die de gebruiker in staat steld aanpassingen te maken in zijn
+// gebruikers info.
 
 import UIKit
 import FirebaseAuth
-//import Firebase
-//import FirebaseAuthUI
 
 class instellingenViewController: UIViewController {
     
@@ -65,8 +65,6 @@ class instellingenViewController: UIViewController {
             
             // Empty Field after usages.
             newGroupField.text = ""
-
-            
         } else {
             print("No new group specified.")
             showAlert(title: "Oeps!", message: "No new groupt specified.")
@@ -84,7 +82,7 @@ class instellingenViewController: UIViewController {
         changeGroupButtonOutles.layer.cornerRadius = 5
         changePasswordButtonOutlet.layer.cornerRadius = 5
         
-        // Layout:
+        // Layout van de keyboard.
         self.hideKeyboardWhenTappedAround()
         addKeyboardNotifications()
         // Maak de loop v/d return key:

@@ -5,11 +5,11 @@
 //  Created by Thomas De lange on 15-01-18.
 //  Copyright © 2018 Thomas De lange. All rights reserved.
 //
+// Registreer een nieuwe gebruiker. Maak een Firebase user maar ook extra data in de database.
 
 import UIKit
 import Firebase
 import FirebaseAuth
-
 
 class registerUserViewController: UIViewController, UITextFieldDelegate {
     
@@ -63,7 +63,6 @@ class registerUserViewController: UIViewController, UITextFieldDelegate {
             print("Password field is empty.")
             showAlert(title: "Empty Field", message: "Password field is empty.")
         }
-        
         // Bounce effect
         registerButton.bounce()
     }
@@ -78,8 +77,7 @@ class registerUserViewController: UIViewController, UITextFieldDelegate {
         mailTextField.addTarget(wachtwoordTextField, action: #selector(becomeFirstResponder), for: .editingDidEndOnExit)
         wachtwoordTextField.addTarget(wachtwoordTextFieldOpnieuw, action: #selector(becomeFirstResponder), for: .editingDidEndOnExit)
         wachtwoordTextFieldOpnieuw.addTarget(groupIDTextField, action: #selector(becomeFirstResponder), for: .editingDidEndOnExit)
-        
-        // Layout:
+        // Keyboard functies.
         self.hideKeyboardWhenTappedAround()
         addKeyboardNotifications()
         registerButton.layer.cornerRadius = 5

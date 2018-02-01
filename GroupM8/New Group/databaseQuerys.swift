@@ -5,6 +5,8 @@
 //  Created by Thomas De lange on 21-01-18.
 //  Copyright © 2018 Thomas De lange. All rights reserved.
 //
+// Alle functies in dit bestand zijn bedoeld voor comunicatie met de databas van Firebase.
+// Primair worden berichten verstuuren en opgehaald, gebruikers data en evenementen voor de agenda.
 
 import Foundation
 import FirebaseDatabase
@@ -12,7 +14,7 @@ import FirebaseAuth
 
 class DatabaseQuerys {
     
-    // Maak it self. global
+    // Maak hem global
     static var shared = DatabaseQuerys()
     
     // Database reference

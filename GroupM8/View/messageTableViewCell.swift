@@ -5,6 +5,8 @@
 //  Created by Thomas De lange on 28-01-18.
 //  Copyright © 2018 Thomas De lange. All rights reserved.
 //
+// Berichten worden in deze cellen gezet. Er hoord een .xib bij die ook
+// messageTableViewCell heet.
 
 import UIKit
 

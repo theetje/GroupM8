@@ -5,6 +5,8 @@
 //  Created by Thomas De lange on 08-01-18.
 //  Copyright © 2018 Thomas De lange. All rights reserved.
 //
+// Functies hieronder bevatten nog comments die eventueel weg kunnen. Maar heb ik laten staan omdat
+// ik anders vergeet wat de delegates doen.
 
 import UIKit
 import Firebase

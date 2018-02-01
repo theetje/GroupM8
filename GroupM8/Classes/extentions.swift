@@ -5,6 +5,7 @@
 //  Created by Thomas De lange on 30-01-18.
 //  Copyright © 2018 Thomas De lange. All rights reserved.
 //
+// Extentions van de UIViewController en de UIView. Ze hebben vrij uiteen lopende functies.
 
 import Foundation
 
@@ -54,7 +55,7 @@ extension UIViewController {
     
     @objc func keyboardWillHide(notification: NSNotification) {
         let duration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double
-//        if using constraint
+        // Dit stukje is voor verder ontwikkeling van de app belangrijk nu nog niet.
 //        bottomViewBottomSpaceConstraint.constant = 0
         self.view.frame.origin.y = 0
         UIView.animate(withDuration: duration) {

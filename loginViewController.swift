@@ -5,6 +5,8 @@
 //  Created by Thomas De lange on 11-01-18.
 //  Copyright © 2018 Thomas De lange. All rights reserved.
 //
+// loginViewController is verassend genoeg bedoeld om in te loggen. Als er een gebruiker bekend is in de
+// KeyChain dan gaat die direct door.
 
 import UIKit
 import Firebase
