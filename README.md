@@ -3,6 +3,8 @@
 
 GroupM8 is de hulp voor iedere groep, verenging of organisatie die persoonlijk contact wil met groepsleden, maar dan makkelijk. Het onderhouden van de rekening het sturen van een mail, het controleren op aanwezigheid. Allemaal problemen die in afzonderlijk opgelost moeten worden, tot nu.
 
+De product video is [hier](https://youtu.be/sfUyEgzbJwY) te vinden.
+
 ## Problem statement
 
 Het maakt het voor iedereen mogelijk een groep mensen op de hoogte te houden van activiteiten in de agenda, berichten te sturen, in informatie te voorzien en contributie te innen.
