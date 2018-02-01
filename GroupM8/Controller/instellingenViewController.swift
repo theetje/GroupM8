@@ -79,11 +79,17 @@ class instellingenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Layout aanpassingen:
+        // Layout:
         welkomeNameLabel.text = "Welkom \(User.shared.chatName ?? "Gebruiker")"
         changeGroupButtonOutles.layer.cornerRadius = 5
         changePasswordButtonOutlet.layer.cornerRadius = 5
+        
+        // Layout:
         self.hideKeyboardWhenTappedAround()
+        addKeyboardNotifications()
+        // Maak de loop v/d return key:
+        oldPasswordField.addTarget(newPasswordField, action: #selector(becomeFirstResponder), for: .editingDidEndOnExit)
+        oldPasswordField.addTarget(newPasswordField, action: #selector(becomeFirstResponder), for: .editingDidEndOnExit)
         
         // De functies voor het hamburger menu.
         hamburgerButton.target = self.revealViewController()

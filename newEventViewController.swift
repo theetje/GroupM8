@@ -54,8 +54,12 @@ class newEventViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Verwijder toetsenbord bij tab
+        // Maak de loop v/d return key:
+        eventTextField.addTarget(eventDesctiption, action: #selector(becomeFirstResponder), for: .editingDidEndOnExit)
+        
+        // Layout:
         self.hideKeyboardWhenTappedAround()
+        addKeyboardNotifications()
         
         datePickerOutlet.setValue(UIColor.white, forKey: "textColor")
     }

@@ -28,20 +28,37 @@ extension UIViewController {
         view.addGestureRecognizer(tap)
     }
     
-    // Aditionele fuctie die de view regelt als het toetsenbord omhoog komt (gaat de view mee)
+    
+    // Functies hieronder (3) zijn bedoeld voor het omhoog brengen van de view als een toetsenbord omhoog komt.
+    func addKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow(notification:)),
+                                               name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide(notification:)),
+                                               name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let duration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double
+            // if using constraints
+            // bottomViewBottomSpaceConstraint.constant = keyboardSize.height
+            self.view.frame.origin.y -= keyboardSize.height
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
             }
         }
     }
-    // Aditionele fuctie die de view regelt als het toetsenbord omlaag gaat (gaat de view mee)
+    
     @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
-            }
+        let duration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double
+//        if using constraint
+//        bottomViewBottomSpaceConstraint.constant = 0
+        self.view.frame.origin.y = 0
+        UIView.animate(withDuration: duration) {
+            self.view.layoutIfNeeded()
         }
     }
 }

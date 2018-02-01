@@ -44,16 +44,16 @@ class chatboxViewController: UIViewController, UITableViewDataSource, UITableVie
     // Overrides:
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Layout:
         // Connect het nib (xib) bestand.
         let nib = UINib(nibName: "messageTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "messageCell")
-        self.hideKeyboardWhenTappedAround()
         // Haald de shadow onderaan de navigatie balk
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-
+        
+        // Beweeg omhoog als toetsenbord verschrijnt.
+        addKeyboardNotifications()
         
         // Programmatic link for tableView
         tableView.dataSource = self
@@ -106,7 +106,10 @@ class chatboxViewController: UIViewController, UITableViewDataSource, UITableVie
         MessageArray.reverse()
         
         cell.messageContentLabel?.text = MessageArray[indexPath.row].MessageText!
-        cell.messageTimestempLabel?.text = MessageArray[indexPath.row].TimeStamp!
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZ"
+        let dateDate = formatter.date(from: MessageArray[indexPath.row].TimeStamp!)
+        formatter.dateFormat = "yyyy MM dd HH:mm:ss" 
+        cell.messageTimestempLabel?.text = formatter.string(from: dateDate!)
         cell.messageWriterLabel?.text = MessageArray[indexPath.row].MessageWriter!
         
         return cell

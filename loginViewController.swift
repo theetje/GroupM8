@@ -57,6 +57,7 @@ class loginViewController: UIViewController {
         // Layout:
         loginButton.layer.cornerRadius = 5
         self.hideKeyboardWhenTappedAround()
+        addKeyboardNotifications()
         // Haald de shadow onderaan de navigatie balk
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
@@ -77,10 +78,6 @@ class loginViewController: UIViewController {
         
         // Maak de loop v/d return key:
         mailTextField.addTarget(wachtwoordTextField, action: #selector(becomeFirstResponder), for: .editingDidEndOnExit)
-        
-        // Toetsenbord om-hoog/laag view om-hoog/laag.
-        NotificationCenter.default.addObserver(self, selector: #selector(registerUserViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(registerUserViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
     override func didReceiveMemoryWarning() {

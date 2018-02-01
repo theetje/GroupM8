@@ -72,18 +72,16 @@ class registerUserViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Layout:
         // Maak de loop v/d return key:
         chatNameTextField.addTarget(mailTextField, action: #selector(becomeFirstResponder), for: .editingDidEndOnExit)
         mailTextField.addTarget(wachtwoordTextField, action: #selector(becomeFirstResponder), for: .editingDidEndOnExit)
         wachtwoordTextField.addTarget(wachtwoordTextFieldOpnieuw, action: #selector(becomeFirstResponder), for: .editingDidEndOnExit)
         wachtwoordTextFieldOpnieuw.addTarget(groupIDTextField, action: #selector(becomeFirstResponder), for: .editingDidEndOnExit)
         
-        // Toetsenbord om-hoog/laag view om-hoog/laag.
-        NotificationCenter.default.addObserver(self, selector: #selector(registerUserViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(registerUserViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
         // Layout:
         self.hideKeyboardWhenTappedAround()
+        addKeyboardNotifications()
         registerButton.layer.cornerRadius = 5
         // Haald de shadow onderaan de navigatie balk
         UINavigationBar.appearance().shadowImage = UIImage()
