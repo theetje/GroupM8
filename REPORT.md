@@ -81,3 +81,78 @@ De grootste uitdaging was het mooi maken van de constraints. Deze liepen niet go
 Ook een .bettercodehub.yml bestand gemaakt om ze wat redelijker beeld van de codekwaliteit te geven.
 
 Tot het laatste heb ik het aanpassen van de view bij het verschijnen van een toetsenbord. De return key gaat nu in de meeste gevallen naar de volgende textfield die gebruikt moet worden.
+
+## Progression report
+
+Het was me niet vanaf het begin duidelijk dat er een progress.md moet worden bijgehouden.
+
+Ik werk alleen wel altijd met todoist om zo taken voor mijzelf bij te houden. Hier de lijst met afgeronde taken en de beschrijving (progressie loopt van onder naar boven):
+
+•	Datum aanpassen in message cell
+
+•	Header comments toevoegen.
+
+•	Werk beter code hub nog even goed uit
+
+•	zet toetsenbord zo neer dat alles goed zichtbaar blijft
+
+•	Laat return op toetsenbord wat doen
+
+•	Herschik de constraints van alle views die niet goed lopen
+
+•	Public presentations Voorbereid
+
+•	Maak voeg aan agenda toe knop
+
+•	werk betercode hub.yml bestand uit met hulp!
+
+•	Houd gebruiker ingelogd
+
+•	maak landing page en inlogscherm flitsend
+
+•	Maak logo
+
+•	Zoek naar error in agendaViewController
+
+•	Maak respons schermen voor foute ww enz
+De allert scheremen die de gebruiker inlicht wat er gebeurt zijn nu gemaakt.
+
+•	stijl registreer scherm
+
+•	Stijl inlog scherm
+
+•	Instellingen ViewController maken
+
+•	stijl chat
+
+•	Stijl agenda
+
+•	Maak instellingen view
+
+•	zoek naar view bug
+Niet te vinden error in agendaViewController, heb hem laten zitten.
+
+•	Werk het database schema voor de agenda uit
+dummy data niet meer nodig hiernaa omdat de data word gehaald van de database.
+
+•	Maak de agenda af
+Dit was met tableViewController met dumy data
+
+•	Incomplete alpha version
+Alleen de agenda deed het nog. Maar niet goed.
+
+•	Werk code uit voor agenda
+Tweede stap was met wat style elementen.
+•	Initializeer de agenda
+De eerste stap voor het opzetten van de calendar collection view
+
+•	Maak nieuwe Views voor agenda en chatbox
+Hier ben ik tegen de beperkingen van de collectionView controller aangelopen in combinatie met het hamburger menu.
+
+•	Maak Firebase login werkend
+Het inzetten van de standaar firebase login (Auth.auth())
+
+•	First prototype Inleveren
+Hier was eigelijk nog niets van de functies van de app aanwezig
+
+•	Design document Inleveren

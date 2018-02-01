@@ -32,7 +32,7 @@ De slider is ook extern bedacht door [John-Lluch](https://github.com/John-Lluch/
 ### Algemene Functies
 ![Agenda Functies](doc/readme/Agenda.png)
 ![Messageboard Functies](doc/readme/Messageboard.png)
-![instellingen](doc/readme/instellingen.png)
+![instellingen](doc/readme/Instellingen.png)
 
 ### Menu
 ![Menu](doc/readme/Menu.png)
