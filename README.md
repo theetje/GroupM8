@@ -1,4 +1,5 @@
 # GroupM8
+[![BCH compliance](https://bettercodehub.com/edge/badge/theetje/GroupM8?branch=master)](https://bettercodehub.com/)
 
 GroupM8 is de hulp voor iedere groep, verenging of organisatie die persoonlijk contact wil met groepsleden, maar dan makkelijk. Het onderhouden van de rekening het sturen van een mail, het controleren op aanwezigheid. Allemaal problemen die in afzonderlijk opgelost moeten worden, tot nu.
 
@@ -12,32 +13,25 @@ Denk aan een voetbalteam, studie verenging of gewoon je vriendengroep. Het effec
 
 Het bijhouden van een leden bestand en deze berichten sturen gaat gemakkelijk via de app. Bij het aanmelden wordt er gevraagd of iemand een groep wil maken of bij een bestaande groep wil aanmelden. Het is hierna nog mogelijk van groep te wisselen door naar instellingen te gaan.
 
-Na het inloggen is er een chatbox zichtbaar waar idereen algemene berichten kan sturen. Het tweede onderdeel is dan de agenda. De beheerder kan items toevoegen. Waarscheinlijk gaat dit met behulp van een [package](https://cocoapods.org/pods/JTAppleCalendar).
+Na het inloggen is er een chatbox zichtbaar waar idereen algemene berichten kan sturen. Het tweede onderdeel is dan de agenda. De beheerder kan items toevoegen. Dit gaat met behulp van een [package](https://cocoapods.org/pods/JTAppleCalendar). Het is tezien hoeveel mensen zich hebben aangemeld voor een event. In de agenda.
 
-Het is mogelijk een betaal verzoek te sturen en een schulden lijst bij te houden. Indien mogelijk de kan met de API van Bunq een rekening geopend worden, maar is op dit moment niet met een SDK in Swift dus compatibiliteit moet ik uit gaan zoeken.
-
-Presentielijsten bijhouden is verleden tijd. De beheerder kan een evenement aanmaken en een verzoek versturen voor mensen om zich aan te melden hiervoor.
 En tot slot is er de chatbox functie waar met elkaar gepraat kan worden over, de koetjes en de kalfjes.
 
 Kortom de “fun” van een groep, zonder de administratieve problemen.
 
-## functions
+De icons zijn van [Flaticon](https://www.flaticon.com) en [swifticons](https://www.swifticons.com).
+De licence van dit project is op dit momend ![licence](licence)
 
--	Bijhouden/inzien van presentielijst en [agenda](https://cocoapods.org/pods/JTAppleCalendar) (MVP)
--	Het hebben van een Messageboard (MVP)
--	Mogelijkheid van groep te switchen
--	Het managen/inzien van de financiën
--	Het hebben van een berichten scherm
--   Notificaties van groepsapp
--	Een Algemene agenda
+## Screenshots van de app.
 
-## Visual sketch
-
-### Inlogscherm
-![Inlogscherm](doc/readme/loggin_view.32.36.png)
+### Inlogscherm en registratie
+![Inlogscherm](doc/readme/LoginSchrem.png)
+![Inlogscherm](doc/readme/RegisterSchrem.png)
 
 ### Algemene Functies
-![Algemene Functies](doc/readme/main_functions_app.32.44.png)
+![Agenda Functies](doc/readme/Agenda.png)
+![Messageboard Functies](doc/readme/Messageboard.png)
+![instellingen](doc/readme/instellingen.png)
 
 ### Menu
-![Menu](doc/readme/menu_view.32.52.png)
+![Menu](doc/readme/Menu.png)
