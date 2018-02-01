@@ -20,7 +20,8 @@ En tot slot is er de chatbox functie waar met elkaar gepraat kan worden over, de
 Kortom de “fun” van een groep, zonder de administratieve problemen.
 
 De icons zijn van [Flaticon](https://www.flaticon.com) en [swifticons](https://www.swifticons.com).
-De licence van dit project is op dit momend ![licence](licence)
+De licence van dit project is op dit momend ![licence](LICENSE)
+De slider is ook extern bedacht door [John-Lluch](https://github.com/John-Lluch/SWRevealViewController).
 
 ## Screenshots van de app.
 
